@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+/*
+namespace Unendlich
+{
+    public class Raumschiffe
+    {
+        #region Deklaration
+
+        #endregion
+
+
+        #region Eigenschaften
+
+        
+
+
+        #endregion
+
+
+        #region Init
+
+        
+        #endregion
+
+
+        #region Konstruktor
+
+        public Raumschiffe( Vector2 geschwindigkeit, Vector2 position)
+        {
+            _rumpf = new SRumpfJaeger(position);
+            _waffen = new List<Schiffswaffe>();
+            
+            InitWaffen();
+
+            setzeGeschwindigkeit = geschwindigkeit;
+        }
+        #endregion
+
+        #region Lade Inhalt
+
+        public void LoadContent(ContentManager content)
+        {
+            Raumschiff.LoadContent(content);
+
+        }
+
+        #endregion
+
+
+
+        #region Update und Draw
+
+        public virtual void Update(GameTime gameTime)
+        {
+            _rumpf.Update(gameTime);
+
+            
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            _rumpf.Draw(spriteBatch);
+
+            
+        }
+        #endregion
+    }
+}
+*/

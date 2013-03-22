@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+/*
+namespace Unendlich
+{
+    static public class Schussmanager
+    {
+
+
+        #region Öffentliche Methoden
+
+        public static void AddSchuss(Vector2 position, Texture2D textur, int schaden, Vector2 geschwindigkeit, float lebensZeit,int breite, int hoehe )
+        {
+            schuesse.Add(new Schuss(position, textur, geschwindigkeit, lebensZeit, breite, hoehe, schaden));
+        }
+
+        #endregion
+
+
+        #region Update und Draw
+
+        public static void Update(GameTime gameTime)
+        {
+            for (int i = schuesse.Count - 1; i >= 0; i--)
+            {
+                if (schuesse[i].istAktiv)
+                    schuesse[i].Update(gameTime);
+                else
+                    schuesse.RemoveAt(i);
+            }
+        }
+
+        public static void Draw(SpriteBatch spriteBatch)
+        {
+            foreach (Schuss schuss in schuesse)
+                schuss.Draw(spriteBatch);// ob der Schuss aktiv ist wird in schuss.Draw geprüft
+        }
+        #endregion
+    }
+}
+*/

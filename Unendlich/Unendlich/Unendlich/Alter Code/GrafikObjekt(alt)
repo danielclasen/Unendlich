@@ -1,0 +1,211 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+/*
+namespace Unendlich
+{
+    public abstract class GrafikObjekt
+    {
+        #region Deklaration
+
+        protected Vector2 _weltposition;
+        protected Vector2 _geschwindigkeit = Vector2.Zero;
+        protected int _objektBreite;
+        protected int _objektHoehe;
+
+        protected float _rotation = 0.0f;
+        protected bool _istAktiv = true;
+
+        protected bool _istRammbar = true;
+        protected int _kollisionsRadius = 0;
+        protected float _masse = 0f;
+
+        protected float _malTiefe;
+        protected float _skalierung = 1.0f;
+        #endregion
+
+
+        #region Eigenschaften
+
+        public Vector2 weltposition
+        {
+            get { return _weltposition; }
+        }
+
+        public Vector2 geschwindigkeit
+        {
+            get { return _geschwindigkeit; }
+            set { _geschwindigkeit = value; }
+        }
+
+        public Vector2 weltpositionAendern
+        {
+            set
+            {
+                _weltposition.X = MathHelper.Clamp(value.X, float.MinValue, float.MaxValue);
+                _weltposition.Y = MathHelper.Clamp(value.Y, float.MinValue, float.MaxValue);
+            }
+        }
+
+        public bool istAktiv
+        {
+            get { return _istAktiv; }
+        }
+
+        public bool statusAendern
+        {
+            set { _istAktiv = value; }
+        }
+
+        public float masse
+        {
+            get { return _masse; }
+        }
+
+        /// <summary>
+        /// Absolute / auf Karte
+        /// </summary>
+        public Rectangle objektRechteck
+        {
+            get
+            {
+                return new Rectangle(
+                    (int)weltposition.X, (int)weltposition.Y,
+                    _objektBreite, _objektHoehe);
+            }
+        }
+
+        public Vector2 weltMittelpunkt
+        {
+            get { return new Vector2(weltposition.X + _objektBreite / 2, weltposition.Y + _objektHoehe / 2); }
+        }
+
+        public Vector2 objektMitte
+        {
+            get { return new Vector2(_objektBreite / 2, _objektHoehe / 2); }
+        }
+
+
+        public int kollisionsRadius
+        {
+            get { return _kollisionsRadius; }
+        }
+
+        public float rotation
+        {
+            get { return _rotation; }
+            set { _rotation = value % MathHelper.TwoPi; }
+        }
+
+        #endregion
+
+
+        #region Konstruktor
+
+        public GrafikObjekt(Vector2 position)
+        {
+            this.weltpositionAendern = position;
+        }
+
+        public GrafikObjekt(Vector2 position, int breite, int hoehe)
+            : this(position)
+        {
+            _objektBreite = breite;
+            _objektHoehe = hoehe;
+
+            //Ist das wirklich sinnvoll??
+            if (_kollisionsRadius == 0 && _istRammbar == true)
+            {
+                _kollisionsRadius = (int)MathHelper.Max(_objektBreite, _objektHoehe);
+                _kollisionsRadius /= 2;
+            }
+        }
+
+
+        public GrafikObjekt(Vector2 position,Vector2 geschwindigkeit, int breite, int hoehe, float malTiefe)
+            : this(position, breite, hoehe)
+        {
+            _geschwindigkeit = geschwindigkeit;
+            _malTiefe = malTiefe;
+        }
+
+        public GrafikObjekt(Vector2 position, Vector2 geschwindigkeit, int breite, int hoehe, float malTiefe, float skalierung)
+            : this(position, geschwindigkeit, breite, hoehe, malTiefe)
+        {
+            _skalierung = skalierung;
+        }
+
+        #endregion
+
+
+        #region Kollisionserkennung
+
+        /// <summary>
+        /// Prüft ob sich die beiden Rechtecken überlappen
+        /// !!Muss noch an rotation angepasst werden!!
+        /// </summary>
+        /// <param name="anderesRechteck"></param>
+        /// <returns></returns>
+        public bool IstRechteckKollision(Rectangle anderesRechteck)
+        {
+            if (_istRammbar)
+                return objektRechteck.Intersects(anderesRechteck);
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Prüft ob die Entfernung der beiden Mittelpunkte kleiner als die Summer der Kollisionsradii ist
+        /// </summary>
+        /// <param name="andereMitte"></param>
+        /// <param name="andererKollisionsradius"></param>
+        /// <returns></returns>
+        public bool IstKreisKollision(Vector2 andereMitte, int andererKollisionsradius)
+        {
+            if (_istRammbar)
+                return Vector2.Distance(weltMittelpunkt, andereMitte) < _kollisionsRadius + andererKollisionsradius;
+            else
+                return false;
+        }
+        #endregion
+
+
+        #region Helfermethoden
+
+        public void rotiereZu(Vector2 richtung)
+        {
+            rotation = (float)Math.Atan2(richtung.Y, richtung.X);//berechnet die Drehung
+        }
+
+        protected Vector2 positionNachRotation(Vector2 position)
+        {
+            float cos = (float)Math.Cos(rotation);
+            float sin = (float)Math.Sin(rotation);
+
+            float x = position.X * cos - position.Y * sin;
+            float y = position.X * sin + position.Y * cos;
+
+            return new Vector2(x, y);
+        }
+        #endregion
+
+
+        #region Update
+
+        public virtual void Update(GameTime gameTime)
+        {
+            if (!istAktiv)
+                return;
+
+            float vergangen = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            rotiereZu(_geschwindigkeit);//aktuallisiert die Rotation an hand der Geschwindigkeit
+
+            weltpositionAendern = weltposition + _geschwindigkeit*(float)gameTime.ElapsedGameTime.TotalSeconds;
+        }
+        #endregion
+    }
+}
+*/

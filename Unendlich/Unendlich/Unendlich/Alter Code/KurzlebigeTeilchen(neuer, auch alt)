@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+/*
+namespace Unendlich
+{
+    public class KurzlebigeTeilchen:SpielObjekt
+    {
+        #region Deklaration
+
+        protected float _lebensZeit;
+        protected float _restZeit;
+        #endregion
+
+
+        #region Eigenschaften
+
+        public float vergangeneZeit
+        {
+            get { return _lebensZeit - _restZeit; }
+        }
+
+        public float prozentualeRestzeit
+        {
+            get { return (float)vergangeneZeit / (float)_lebensZeit; }
+        }
+        #endregion
+
+
+        #region Konstruktor
+
+        public KurzlebigeTeilchen(
+            Vector2 startposition,
+            Vector2 geschwindigkeit,
+            float lebensZeit,
+            int breite,
+            int hoehe,
+            float malTiefe,
+            string aktuelleAnimation)
+            : base(startposition, breite, hoehe, malTiefe,aktuelleAnimation)
+        {
+            _lebensZeit = lebensZeit;
+            _restZeit = lebensZeit;
+        }
+        #endregion
+
+
+        #region Update and Draw
+
+        public override void Update(GameTime gameTime)
+        {
+            if (_restZeit <= 0)
+                _istAktiv = false;
+
+            if (istAktiv)
+            {
+                base.Update(gameTime);
+                _restZeit -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if(istAktiv)
+                base.Draw(spriteBatch);
+        }
+        #endregion
+    }
+}
+*/

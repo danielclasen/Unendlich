@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+/*
+namespace Unendlich
+{
+
+    public class Sprite : GrafikObjekt
+    {
+        protected Texture2D _textur;
+        protected Color _farbe;
+
+        #region Konstruktor
+
+        public Sprite(Texture2D texture, Vector2 position, Vector2 geschwindigkeit, int breite, int hoehe, float malTiefe)
+            : base(position,geschwindigkeit, breite, hoehe, malTiefe)
+        {
+            this._textur = texture;
+            _farbe = Color.White;
+        }
+
+        public Sprite(Texture2D texture, Vector2 position , int breite, int hoehe, float malTiefe)
+            : base(position, Vector2.Zero, breite, hoehe, malTiefe)
+        {
+            this._textur = texture;
+            _farbe = Color.White;
+        }
+
+        #endregion
+
+
+        public Color farbe
+        {
+            get { return farbe; }
+            set { _farbe = value; }
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            if (Kamera.IstObjektSichtbar(objektRechteck))
+            {
+                spriteBatch.Draw(
+                    _textur,
+                    Kamera.WeltAufScreen(weltMittelpunkt),
+                    new Rectangle(0, 0, _objektBreite, _objektHoehe),
+                    _farbe,
+                    rotation,
+                    objektMitte,
+                    1.0f,
+                    SpriteEffects.None,
+                    _malTiefe);
+            }
+        }
+    }
+}
+*/
