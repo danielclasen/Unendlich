@@ -11,14 +11,16 @@ namespace Unendlich
         #region Deklaration
 
         private static Spieler _spieler;
+        private static List<Gegnermanager> _alleFraktionen;
         #endregion
 
 
         #region Init
 
-        public static void Init(Spieler spieler)
+        public static void Init(Spieler spieler, List<Gegnermanager> alleFraktionen)
         {
             _spieler = spieler;
+            _alleFraktionen = alleFraktionen;
         }
         #endregion
 
@@ -27,19 +29,21 @@ namespace Unendlich
 
         protected static void SchussTrifftGegner()
         {
-            for (int i = 0; i < Gegnermanager.alleGegner.Count; i++)
+            List<Raumschiff> alleGegner=AlleGegner();
+
+            for (int i = 0; i < alleGegner.Count; i++)
             {
-                for (int j = 0; j < Gegnermanager.alleGegner.Count; j++)
+                for (int k = 0; k < alleGegner.Count; k++)
                 {
-                    if (i == j)//wenn i==j wahr ist, handelt es sich um den selben Gegener (Gegner soll sich nicht selbst abschießen können)
+                    if (i == k)//wenn i==j wahr ist, handelt es sich um den selben Gegener (Gegner soll sich nicht selbst abschießen können)
                         continue;
                     else
                     {
-                        foreach (Schuss schuss in Gegnermanager.alleGegner[i].AlleSchuesse())
+                        foreach (Schuss schuss in alleGegner[i].AlleSchuesse())
                         {
-                            if (Gegnermanager.alleGegner[j].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                            if (alleGegner[k].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                             {
-                                Gegnermanager.alleGegner[j].WurdeGetroffen(schuss);
+                                alleGegner[k].WurdeGetroffen(schuss);
                                 schuss.HatGetroffen();
                             }
                         }
@@ -48,9 +52,9 @@ namespace Unendlich
 
                 foreach (Schuss schuss in _spieler.aktuellesSchiff.AlleSchuesse())
                 {
-                    if (Gegnermanager.alleGegner[i].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                    if (alleGegner[i].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                     {
-                        Gegnermanager.alleGegner[i].WurdeGetroffen(schuss);
+                        alleGegner[i].WurdeGetroffen(schuss);
                         schuss.HatGetroffen();
 
                         //Hier können nachher Punkte vergeben werden
@@ -59,31 +63,41 @@ namespace Unendlich
             }
         }
 
+        protected static List<Raumschiff> AlleGegner()
+        {
+            List<Raumschiff> alleGegner=new List<Raumschiff>();
+            
+            foreach (Gegnermanager fraktion in _alleFraktionen)
+                alleGegner.AddRange(fraktion.alleGegner);
+
+            return alleGegner;
+        }
+
         protected static List<Schuss> AlleSchuesse()
         {
             List<Schuss> alleSchuesse = new List<Schuss>();
             alleSchuesse.AddRange(_spieler.aktuellesSchiff.AlleSchuesse());
 
-            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
-                alleSchuesse.AddRange(gegner.AlleSchuesse());
+            foreach(Gegnermanager fraktion in _alleFraktionen)
+                foreach (Raumschiff gegner in fraktion.alleGegner)
+                    alleSchuesse.AddRange(gegner.AlleSchuesse());
 
             return alleSchuesse;
         }
 
         protected static void SchussTrifftSpieler()
         {
-            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
-            {
-                foreach (Schuss schuss in gegner.AlleSchuesse())
-                {
-                    if (_spieler.aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+            foreach (Gegnermanager fraktion in _alleFraktionen)
+                foreach (Raumschiff gegner in fraktion.alleGegner)
+                    foreach (Schuss schuss in gegner.AlleSchuesse())
                     {
-                        //Zu Testzwecken kann der Spieler nicht zerstört werden
-                        _spieler.aktuellesSchiff.WurdeGetroffen(schuss);
-                        schuss.HatGetroffen();
+                        if (_spieler.aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                        {
+                            //Zu Testzwecken kann der Spieler nicht zerstört werden
+                            _spieler.aktuellesSchiff.WurdeGetroffen(schuss);
+                            schuss.HatGetroffen();
+                        }
                     }
-                }
-            }
         }
 
         protected static void SchussTrifftSchuss()

@@ -7,21 +7,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Unendlich
 {
-    public static class Gegnermanager
+    public class Gegnermanager
     {
         #region Deklaration
 
-        private static List<Raumschiff> _gegner;
+        private List<Raumschiff> _gegner;
 
         //temporär
-        private static float _spawnZeitMin = 3.0f;
-        private static float _zeitSeitLetztemSpawn = 0.0f;
+        private float _spawnZeitMin = 3.0f;
+        private float _zeitSeitLetztemSpawn = 0.0f;
         #endregion
 
 
         #region Eigenschaften
 
-        public static List<Raumschiff> alleGegner
+        public List<Raumschiff> alleGegner
         {
             get { return _gegner; }
         }
@@ -30,7 +30,7 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public static void Init()
+        public Gegnermanager()
         {
             _gegner = new List<Raumschiff>();
         }
@@ -39,12 +39,12 @@ namespace Unendlich
 
         #region Helfermethoden
 
-        public static void SpawnGegner(Vector2 position, Vector2 geschwindigkeit)
+        public void SpawnGegner(Vector2 position, Vector2 geschwindigkeit)
         {
             _gegner.Add(new KleinerJaeger(geschwindigkeit, position));
         }
 
-        public static void SpawnGegner(Vector2 position)
+        public void SpawnGegner(Vector2 position)
         {
             SpawnGegner(position, Vector2.Zero);
         }
@@ -53,7 +53,7 @@ namespace Unendlich
         
         #region Update und Draw
 
-        public static void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             //temporär
             float vergangenSeitLetztenFrame = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -80,12 +80,11 @@ namespace Unendlich
         }
 
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Raumschiff gegner in _gegner)
                 gegner.Draw(spriteBatch);
         }
-
         #endregion
     }
 }

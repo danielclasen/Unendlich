@@ -11,18 +11,23 @@ namespace Unendlich
     public static class Spielmanager
     {
         private static Spieler _spieler;
+        private static List<Gegnermanager> _alleFraktionen;
 
         public static void Init(Spieler spieler)
         {
+            Helferklasse.Init();
+
             _spieler = spieler;
-            Gegnermanager.Init();
-            KI.Init(_spieler);
-            Kollisionsmanager.Init(spieler);           
-            Sternenhimmel.Init();
-            Effektmanager.Init();
+            
+            _alleFraktionen = new List<Gegnermanager>();
+            _alleFraktionen.Add(new Gegnermanager());
 
             Anzeige.Init(spieler);
-            Helferklasse.Init();
+            KI.Init(_spieler,_alleFraktionen);
+            Kollisionsmanager.Init(spieler, _alleFraktionen);           
+            
+            Sternenhimmel.Init();
+            Effektmanager.Init();
         }
 
 
@@ -45,13 +50,15 @@ namespace Unendlich
         public static void UpdateIngame(GameTime gameTime)
         {
             _spieler.Update(gameTime);
-            Gegnermanager.Update(gameTime);
+            
+            foreach(Gegnermanager fraktion in _alleFraktionen)
+                fraktion.Update(gameTime);
+
             Kollisionsmanager.Update(gameTime);
             Sternenhimmel.Update(gameTime);
             Kamera.Update(gameTime);
             Effektmanager.Update(gameTime);
         }
-
         #endregion
 
 
@@ -61,11 +68,15 @@ namespace Unendlich
         {
             Sternenhimmel.Draw(spriteBatch);
             _spieler.Draw(spriteBatch);
-            Gegnermanager.Draw(spriteBatch);
+
+            foreach (Gegnermanager fraktion in _alleFraktionen)
+            {
+                fraktion.Draw(spriteBatch);
+            }
+
             Effektmanager.Draw(spriteBatch);
             Anzeige.Draw(spriteBatch);
         }
-
         #endregion
 
     }

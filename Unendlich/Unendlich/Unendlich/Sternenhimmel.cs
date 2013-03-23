@@ -18,7 +18,6 @@ namespace Unendlich
 
         private static List<SpielObjekt> _hintergrund;
 
-        private static Random rand = new Random();
         private static Color[] _farben = { Color.White, Color.Yellow, Color.Wheat, Color.WhiteSmoke, Color.SlateGray }; // alle möglichen Sternfarben
         #endregion
 
@@ -27,8 +26,6 @@ namespace Unendlich
 
         public static void Init()
         {
-            rand = new Random();
-
             _sterne = new List<List<HintergrundStern>>();
             _anzahlSterne = new List<int>();
             int sternenKante = 0;   //da sterne quatratisch sind steht dieser Wert für Höhe und Breite
@@ -73,8 +70,8 @@ namespace Unendlich
                 {
                     Vector2 neuePosition = Vector2.Zero;
 
-                    neuePosition.X = rand.Next(0, Kamera.sichtfeldBreite + 1);
-                    neuePosition.Y = rand.Next(0, Kamera.sichtfeldHoehe + 1);
+                    neuePosition.X = Helferklasse.rand.Next(0, Kamera.sichtfeldBreite + 1);
+                    neuePosition.Y = Helferklasse.rand.Next(0, Kamera.sichtfeldHoehe + 1);
 
                     _sterne[i].Add(new HintergrundStern(Kamera.ScreenAufWelt(neuePosition), 0.9f - i * 0.01f, "Stern" + sternenKante.ToString()));
                     _sterne[i][j].farbe = ZufallsFarbe();
@@ -88,7 +85,7 @@ namespace Unendlich
 
         private static Color ZufallsFarbe()
         {
-            return _farben[rand.Next(0, _farben.Length)];
+            return _farben[Helferklasse.rand.Next(0, _farben.Length)];
         }
         #endregion
 

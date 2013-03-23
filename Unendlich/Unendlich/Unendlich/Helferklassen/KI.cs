@@ -11,16 +11,16 @@ namespace Unendlich
         #region Deklaration
 
         private static Spieler _spieler;
-        private static List<Raumschiff> _gegner;
+        private static List<Gegnermanager> _gegner;
         #endregion
 
 
         #region Init
 
-        public static void Init(Spieler spieler)
+        public static void Init(Spieler spieler, List<Gegnermanager> alleFraktionen)
         {
             _spieler = spieler;
-            _gegner=(Gegnermanager.alleGegner);
+            _gegner = alleFraktionen;
         }
         #endregion
 
