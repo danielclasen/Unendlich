@@ -15,7 +15,8 @@ namespace Unendlich
         public static void Init(Spieler spieler)
         {
             _spieler = spieler;
-            Gegnermanager.Init(spieler);
+            Gegnermanager.Init();
+            KI.Init(_spieler);
             Kollisionsmanager.Init(spieler);           
             Sternenhimmel.Init();
             Effektmanager.Init();

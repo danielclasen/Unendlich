@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisKlassen\AnimationsStreifen.cs" />
+    <Compile Include="Helferklassen\KI.cs" />
     <Compile Include="Manager\Effekte\Schildtreffer.cs" />
     <Compile Include="Raumschiffe\Schild\BSchild.cs" />
     <Compile Include="Helferklassen\Containerklasse.cs" />
