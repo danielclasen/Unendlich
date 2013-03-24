@@ -66,7 +66,7 @@ namespace Unendlich
         public Spieler()
         {
             //Auswahl des Anfangsraumschiffes
-            _aktuellesSchiff = new KleinerJaeger(Vector2.Zero, Vector2.Zero);
+            _aktuellesSchiff = new KleinerJaeger(Vector2.Zero, Vector2.Zero, Raumschiff.Fraktion.spieler1);
         }
         #endregion
 

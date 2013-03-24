@@ -7,21 +7,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Unendlich
 {
-    public class Gegnermanager
+    public static class Gegnermanager
     {
         #region Deklaration
 
-        private List<Raumschiff> _gegner;
+        private static List<Raumschiff> _gegner;
 
         //temporär
-        private float _spawnZeitMin = 3.0f;
-        private float _zeitSeitLetztemSpawn = 0.0f;
+        private static float _spawnZeitMin = 3.0f;
+        private static float _zeitSeitLetztemSpawn = 0.0f;
         #endregion
 
 
         #region Eigenschaften
 
-        public List<Raumschiff> alleGegner
+        public static List<Raumschiff> alleGegner
         {
             get { return _gegner; }
         }
@@ -30,7 +30,7 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public Gegnermanager()
+        public static void Init()
         {
             _gegner = new List<Raumschiff>();
         }
@@ -39,12 +39,12 @@ namespace Unendlich
 
         #region Helfermethoden
 
-        public void SpawnGegner(Vector2 position, Vector2 geschwindigkeit)
+        public static void SpawnGegner(Vector2 position, Vector2 geschwindigkeit)
         {
-            _gegner.Add(new KleinerJaeger(geschwindigkeit, position));
+            _gegner.Add(new KleinerJaeger(geschwindigkeit, position, Raumschiff.Fraktion.gegner1));
         }
 
-        public void SpawnGegner(Vector2 position)
+        public static void SpawnGegner(Vector2 position)
         {
             SpawnGegner(position, Vector2.Zero);
         }
@@ -53,7 +53,7 @@ namespace Unendlich
         
         #region Update und Draw
 
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
             //temporär
             float vergangenSeitLetztenFrame = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -74,13 +74,13 @@ namespace Unendlich
                         _gegner.RemoveAt(i);
                 }
                 else
-                    KI.BerechneVerhalten(_gegner[i]); // Berechnet Verhalten des Gegners
+                    KI.BerechneLogik(_gegner[i]); // Berechnet Verhalten des Gegners
                 
             }
         }
 
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
             foreach (Raumschiff gegner in _gegner)
                 gegner.Draw(spriteBatch);

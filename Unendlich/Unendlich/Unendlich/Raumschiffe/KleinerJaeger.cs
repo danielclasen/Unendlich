@@ -30,12 +30,12 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public KleinerJaeger(Vector2 position)
-            : this(position, Vector2.Zero)
+        public KleinerJaeger(Vector2 position, Fraktion fraktion)
+            : this(position, Vector2.Zero, fraktion)
         { }
 
-        public KleinerJaeger(Vector2 position, Vector2 geschwindigkeit)
-            : base(position, 32, 34, 100, 500, 400, 10f, "KleinerJaeger_fliegen")
+        public KleinerJaeger(Vector2 position, Vector2 geschwindigkeit, Fraktion fraktion)
+            : base(position, 32, 34, 100, 500, 400, 10f,fraktion, "KleinerJaeger_fliegen")
         {
             AnimationHinzufuegen("KleinerJaeger_fliegen", new AnimationsStreifen(Containerklasse.GebeTexture("KleinerJaeger_fliegen"), 32, "KleinerJaeger_fliegen", 0.5f, true));
 

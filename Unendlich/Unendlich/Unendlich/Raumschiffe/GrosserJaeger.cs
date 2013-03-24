@@ -31,12 +31,12 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public GrosserJaeger(Vector2 position)
-            : this(position, Vector2.Zero)
+        public GrosserJaeger(Vector2 position, Fraktion fraktion)
+            : this(position, Vector2.Zero, fraktion)
         { }
 
-        public GrosserJaeger(Vector2 position, Vector2 geschwindigkeit)
-            : base(position, 50, 50, 250, 800, 420, 11f, "GrosserJaeger_fliegen")
+        public GrosserJaeger(Vector2 position, Vector2 geschwindigkeit, Fraktion fraktion)
+            : base(position, 50, 50, 250, 800, 420, 11f, fraktion, "GrosserJaeger_fliegen")
         {
             AnimationHinzufuegen("GrosserJaeger_fliegen", new AnimationsStreifen(Containerklasse.GebeTexture("GrosserJaeger_fliegen"), 50, "GrosserJaeger_fliegen", 0.3f, true));
 

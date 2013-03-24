@@ -31,12 +31,12 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public Spaeher(Vector2 position)
-            : this(position, Vector2.Zero)
+        public Spaeher(Vector2 position, Fraktion fraktion)
+            : this(position, Vector2.Zero, fraktion)
         { }
 
-        public Spaeher(Vector2 position, Vector2 geschwindigkeit)
-            : base(position, 40, 20, 80, 400, 800, 20f, "Spaeher_fliegen")
+        public Spaeher(Vector2 position, Vector2 geschwindigkeit, Fraktion fraktion)
+            : base(position, 40, 20, 80, 400, 800, 20f, fraktion, "Spaeher_fliegen")
         {
             AnimationHinzufuegen("Spaeher_fliegen", new AnimationsStreifen(Containerklasse.GebeTexture("Spaeher_fliegen"), 40, "Spaeher_fliegen", 0.3f, true));
 

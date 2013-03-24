@@ -11,35 +11,60 @@ namespace Unendlich
         #region Deklaration
 
         private static Spieler _spieler;
-        private static List<Gegnermanager> _gegner;
+        private enum MoeglicheAktionen { Flucht, Warten, Angriff };
+        private static MoeglicheAktionen _naechsterSchritt;
         #endregion
 
 
         #region Init
 
-        public static void Init(Spieler spieler, List<Gegnermanager> alleFraktionen)
+        public static void Init(Spieler spieler)
         {
             _spieler = spieler;
-            _gegner = alleFraktionen;
+            _naechsterSchritt = new MoeglicheAktionen();
         }
         #endregion
 
 
         #region Helfermethoden
-        
-        private static void FliegeZuSpieler(Raumschiff gegner)
+
+        private static void FliegeZuSpieler(Raumschiff aktuellerGegner)
         {
-            Vector2 neueRichtung = Vector2.Zero;
+            Vector2 richtungZuSpieler = Vector2.Zero;
 
-            neueRichtung.X = _spieler.weltmittelpunkt.X - gegner.weltMittelpunkt.X;
-            neueRichtung.Y = _spieler.weltmittelpunkt.Y - gegner.weltMittelpunkt.Y;
+            richtungZuSpieler.X = _spieler.weltmittelpunkt.X - aktuellerGegner.weltMittelpunkt.X;
+            richtungZuSpieler.Y = _spieler.weltmittelpunkt.Y - aktuellerGegner.weltMittelpunkt.Y;
+            richtungZuSpieler.Normalize();
 
-            gegner.GeschwindigkeitAendern(neueRichtung);
+            bool gegnerIstGewesen = false;
+
+            Vector2 ausweichRichtung=Vector2.Zero;
+
+            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
+            {
+                if (!gegnerIstGewesen)
+                {
+                    if (aktuellerGegner.Equals(gegner))
+                    {
+                        gegnerIstGewesen = true;
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (Vector2.Distance(aktuellerGegner.weltMittelpunkt,gegner.weltMittelpunkt)<2000)//es werden nur gegner berücksichtig, die näher als 2000 Pixel sind
+                    {
+                        //Berechnung für ausweichen
+                    }
+                }
+            }
+
+            aktuellerGegner.GeschwindigkeitAendern(richtungZuSpieler);
         }
 
-        private static float EntfernungZumSpieler(Raumschiff gegner)
+        private static float EntfernungZumSpieler(Raumschiff aktuellerGegner)
         {
-            return Vector2.Distance(_spieler.weltmittelpunkt, gegner.weltMittelpunkt);
+            return Vector2.Distance(_spieler.weltmittelpunkt, aktuellerGegner.weltMittelpunkt);
         }
 
         private static bool IstSpielerImZiel(Raumschiff gegner)
@@ -66,15 +91,41 @@ namespace Unendlich
                 if (EntfernungZumSpieler(gegner) < gegner.waffenreichweite)
                     gegner.BefehlZumFeuern();
         }
+
+        private static void BerechneNaechstenSchritt(Raumschiff aktuellerGegner)
+        {
+            
+        }
+
+        private static void FuehreAngriffAus(Raumschiff aktuellerGegner)
+        {
+            FliegeZuSpieler(aktuellerGegner);
+            SchiesseAufSpieler(aktuellerGegner);
+        }
+
+        private static void FuehereFluchtAus(Raumschiff aktuellerGegner)
+        {
+
+        }
+
+        private static void FuehreWartenAus(Raumschiff aktuellerGegener)
+        {
+
+        }
+
+        private static void BerechneFlugbahn(Raumschiff aktuellerGegner)
+        {
+            
+        }
         #endregion
 
 
         #region Öffentliche Methoden
 
-        public static void BerechneVerhalten(Raumschiff aktuellerGegner)
+        public static void BerechneLogik(Raumschiff aktuellerGegner)
         {
-            FliegeZuSpieler(aktuellerGegner);
-            SchiesseAufSpieler(aktuellerGegner);
+            //temporär
+            FuehreAngriffAus(aktuellerGegner);
         }
         #endregion
     }
