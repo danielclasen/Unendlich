@@ -35,11 +35,11 @@ namespace Unendlich
                         continue;
                     else
                     {
-                        foreach (Schuss schuss in Gegnermanager.alleGegner[i].AlleSchuesse())
+                        foreach (Schuss schuss in Gegnermanager.alleGegner[i].aktuellesSchiff.AlleSchuesse())
                         {
-                            if (Gegnermanager.alleGegner[k].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                            if (Gegnermanager.alleGegner[k].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                             {
-                                Gegnermanager.alleGegner[k].WurdeGetroffen(schuss);
+                                Gegnermanager.alleGegner[k].aktuellesSchiff.WurdeGetroffen(schuss);
                                 schuss.HatGetroffen();
                             }
                         }
@@ -48,9 +48,9 @@ namespace Unendlich
 
                 foreach (Schuss schuss in _spieler.aktuellesSchiff.AlleSchuesse())
                 {
-                    if (Gegnermanager.alleGegner[i].IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                    if (Gegnermanager.alleGegner[i].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                     {
-                        Gegnermanager.alleGegner[i].WurdeGetroffen(schuss);
+                        Gegnermanager.alleGegner[i].aktuellesSchiff.WurdeGetroffen(schuss);
                         schuss.HatGetroffen();
 
                         //Hier können nachher Punkte vergeben werden
@@ -65,8 +65,8 @@ namespace Unendlich
             alleSchuesse.AddRange(_spieler.aktuellesSchiff.AlleSchuesse());
 
 
-            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
-                alleSchuesse.AddRange(gegner.AlleSchuesse());
+            foreach (NPC gegner in Gegnermanager.alleGegner)
+                alleSchuesse.AddRange(gegner.aktuellesSchiff.AlleSchuesse());
 
             return alleSchuesse;
         }
@@ -74,8 +74,8 @@ namespace Unendlich
         protected static void SchussTrifftSpieler()
         {
 
-            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
-                foreach (Schuss schuss in gegner.AlleSchuesse())
+            foreach (NPC gegner in Gegnermanager.alleGegner)
+                foreach (Schuss schuss in gegner.aktuellesSchiff.AlleSchuesse())
                 {
                     if (_spieler.aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                     {

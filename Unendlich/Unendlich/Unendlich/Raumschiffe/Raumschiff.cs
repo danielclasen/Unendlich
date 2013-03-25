@@ -23,19 +23,10 @@ namespace Unendlich
 
         protected List<BasisWaffe> _waffen;
         protected BasisSchild _schild;
-
-        public enum Fraktion { spieler1, gegner1, gegner2 };
-        protected Fraktion _fraktion;
         #endregion
 
 
         #region Eigenschaften
-
-        public Fraktion fraktion
-        {
-            get { return _fraktion; }
-        }
-
         public float zeitSeitLetztemTreffer
         {
             get { return _zeitSeitLetzemTreffer; }
@@ -125,7 +116,7 @@ namespace Unendlich
 
         #region Konstruktor
 
-        public Raumschiff(Vector2 position, int breite, int hoehe, int huelleMax, int energie, int geschwindigkeitMax, float schub, Fraktion fraktion, string aktuelleAnimation)
+        public Raumschiff(Vector2 position, int breite, int hoehe, int huelleMax, int energie, int geschwindigkeitMax, float schub, string aktuelleAnimation)
             : base(position, breite, hoehe, 0.4f, aktuelleAnimation)
         {
             _schiffsHuelleMax = huelleMax;
@@ -134,13 +125,11 @@ namespace Unendlich
             _schub = schub;
             _masse = _schiffsHuelle;
             _energie = energie;
-            _fraktion = fraktion;
 
             _waffen = new List<BasisWaffe>();
             InitKomponenten();
         }
         #endregion
-
 
 
         #region Helfermethoden

@@ -28,53 +28,30 @@ namespace Unendlich
 
         #region Helfermethoden
 
-        private static void FliegeZuSpieler(Raumschiff aktuellerGegner)
+        private static void FliegeZuSpieler(NPC aktuellerGegner)
         {
             Vector2 richtungZuSpieler = Vector2.Zero;
 
-            richtungZuSpieler.X = _spieler.weltmittelpunkt.X - aktuellerGegner.weltMittelpunkt.X;
-            richtungZuSpieler.Y = _spieler.weltmittelpunkt.Y - aktuellerGegner.weltMittelpunkt.Y;
+            richtungZuSpieler.X = _spieler.weltMittelpunkt.X - aktuellerGegner.weltMittelpunkt.X;
+            richtungZuSpieler.Y = _spieler.weltMittelpunkt.Y - aktuellerGegner.weltMittelpunkt.Y;
             richtungZuSpieler.Normalize();
 
-            bool gegnerIstGewesen = false;
-
-            Vector2 ausweichRichtung=Vector2.Zero;
-
-            foreach (Raumschiff gegner in Gegnermanager.alleGegner)
-            {
-                if (!gegnerIstGewesen)
-                {
-                    if (aktuellerGegner.Equals(gegner))
-                    {
-                        gegnerIstGewesen = true;
-                        continue;
-                    }
-                }
-                else
-                {
-                    if (Vector2.Distance(aktuellerGegner.weltMittelpunkt,gegner.weltMittelpunkt)<2000)//es werden nur gegner berücksichtig, die näher als 2000 Pixel sind
-                    {
-                        //Berechnung für ausweichen
-                    }
-                }
-            }
-
-            aktuellerGegner.GeschwindigkeitAendern(richtungZuSpieler);
+            aktuellerGegner.aktuellesSchiff.GeschwindigkeitAendern(richtungZuSpieler);
         }
 
-        private static float EntfernungZumSpieler(Raumschiff aktuellerGegner)
+        private static float EntfernungZumSpieler(NPC aktuellerGegner)
         {
-            return Vector2.Distance(_spieler.weltmittelpunkt, aktuellerGegner.weltMittelpunkt);
+            return Vector2.Distance(_spieler.weltMittelpunkt, aktuellerGegner.weltMittelpunkt);
         }
 
-        private static bool IstSpielerImZiel(Raumschiff gegner)
+        private static bool IstSpielerImZiel(NPC gegner)
         {
             Vector2 richtung = gegner.geschwindigkeit;
             richtung.Normalize();
             richtung *= EntfernungZumSpieler(gegner);//multipliziert die Richtung des Gegeners mit der Entfernung
 
             //wenn der Gegner in die Richtung des 2fachen Kollisionsradius des Spieler fliegt, soll er den Spieler im Ziel haben
-            if (Vector2.Distance(gegner.weltMittelpunkt + richtung, _spieler.weltmittelpunkt) < _spieler.kollisionsRadius * 2)
+            if (Vector2.Distance(gegner.weltMittelpunkt + richtung, _spieler.weltMittelpunkt) < _spieler.kollisionsRadius * 2)
                 return true;
             else
                 return false;
@@ -84,12 +61,12 @@ namespace Unendlich
         /// Überprüft die Distanz zum Spieler und schießt, wenn der Spieler näher als Feuerreichweite ist und sich der Spieler im Ziel befindet
         /// </summary>
         /// <param name="gegner"></param>
-        private static void SchiesseAufSpieler(Raumschiff gegner)
+        private static void SchiesseAufSpieler(NPC gegner)
         {
             //Prüfungen werden geteilt, um Rechenleistung zu sparen
             if (IstSpielerImZiel(gegner))
-                if (EntfernungZumSpieler(gegner) < gegner.waffenreichweite)
-                    gegner.BefehlZumFeuern();
+                if (EntfernungZumSpieler(gegner) < gegner.aktuellesSchiff.waffenreichweite)
+                    gegner.aktuellesSchiff.BefehlZumFeuern();
         }
 
         private static void BerechneNaechstenSchritt(Raumschiff aktuellerGegner)
@@ -97,18 +74,18 @@ namespace Unendlich
             
         }
 
-        private static void FuehreAngriffAus(Raumschiff aktuellerGegner)
+        private static void FuehreAngriffAus(NPC aktuellerGegner)
         {
             FliegeZuSpieler(aktuellerGegner);
             SchiesseAufSpieler(aktuellerGegner);
         }
 
-        private static void FuehereFluchtAus(Raumschiff aktuellerGegner)
+        private static void FuehereFluchtAus(NPC aktuellerGegner)
         {
 
         }
 
-        private static void FuehreWartenAus(Raumschiff aktuellerGegener)
+        private static void FuehreWartenAus(NPC aktuellerGegener)
         {
 
         }
@@ -122,10 +99,10 @@ namespace Unendlich
 
         #region Öffentliche Methoden
 
-        public static void BerechneLogik(Raumschiff aktuellerGegner)
+        public static void BerechneLogik(NPC gegner)
         {
             //temporär
-            FuehreAngriffAus(aktuellerGegner);
+            FuehreAngriffAus(gegner);
         }
         #endregion
     }

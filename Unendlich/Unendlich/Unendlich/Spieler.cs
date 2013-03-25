@@ -16,58 +16,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Unendlich
 {
-    public class Spieler
+    public class Spieler:Einheit
     {
         #region Deklaration
         
-        protected Raumschiff _aktuellesSchiff;
-
         protected float _eingabeVerzoegerung=0.02f;
         protected float _letzteEingabe = 0.0f;
         #endregion
 
 
-        #region Eigenschaften
-
-        public Raumschiff aktuellesSchiff
-        {
-            get { return _aktuellesSchiff; }
-        }
-
-        public Vector2 geschwindigkeit
-        {
-            get { return _aktuellesSchiff.geschwindigkeit; }
-        }
-
-        public Vector2 weltposition
-        {
-            get { return _aktuellesSchiff.weltposition; }
-        }
-
-        public Vector2 weltmittelpunkt
-        {
-            get { return _aktuellesSchiff.weltMittelpunkt; }
-        }
-
-        public float rotation
-        {
-            get { return _aktuellesSchiff.rotation; }
-        }
-
-        public float kollisionsRadius
-        {
-            get { return _aktuellesSchiff.kollisionsRadius; }
-        }
-        #endregion
-
 
         #region Konstruktor
 
         public Spieler()
-        {
-            //Auswahl des Anfangsraumschiffes
-            _aktuellesSchiff = new KleinerJaeger(Vector2.Zero, Vector2.Zero, Raumschiff.Fraktion.spieler1);
-        }
+            : base(new GrosserJaeger(Vector2.Zero), Fraktion.spieler1)
+        { }
         #endregion
 
 
@@ -113,22 +76,14 @@ namespace Unendlich
         #endregion
 
 
-        #region Update und Draw
+        #region Update
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            float vergangen = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
             EingabeVerarbeiten();
-            
-            _aktuellesSchiff.Update(gameTime);  //aktuallisiert unter anderem auch die Position in GrafikObjekt
+            base.Update(gameTime);
 
             Kamera.geschwindigkeit = _aktuellesSchiff.geschwindigkeit;
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            _aktuellesSchiff.Draw(spriteBatch);
         }
         #endregion
     }

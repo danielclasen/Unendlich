@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisKlassen\AnimationsStreifen.cs" />
+    <Compile Include="BasisKlassen\Einheit.cs" />
     <Compile Include="Helferklassen\KI.cs" />
     <Compile Include="Manager\Effekte\Schildtreffer.cs" />
     <Compile Include="Raumschiffe\Schild\BSchild.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Raumschiffe\Waffe\MG.cs" />
     <Compile Include="Weltkomponenten\Asteroid.cs" />
     <Compile Include="Manager\Effekte\Explosion.cs" />
+    <Compile Include="NPC.cs" />
     <None Include="Alter Code\KurzlebigeTeilchen%28alt%29" />
     <None Include="Alter Code\KurzlebigeTeilchen%28neuer, auch alt%29" />
     <Compile Include="Manager\Effektmanager.cs" />

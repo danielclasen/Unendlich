@@ -11,7 +11,7 @@ namespace Unendlich
     {
         #region Deklaration
 
-        private static List<Raumschiff> _gegner;
+        private static List<NPC> _gegner;
 
         //temporär
         private static float _spawnZeitMin = 3.0f;
@@ -21,7 +21,7 @@ namespace Unendlich
 
         #region Eigenschaften
 
-        public static List<Raumschiff> alleGegner
+        public static List<NPC> alleGegner
         {
             get { return _gegner; }
         }
@@ -32,21 +32,21 @@ namespace Unendlich
 
         public static void Init()
         {
-            _gegner = new List<Raumschiff>();
+            _gegner = new List<NPC>();
         }
         #endregion
 
 
         #region Helfermethoden
 
-        public static void SpawnGegner(Vector2 position, Vector2 geschwindigkeit)
+        public static void SpawnGegner(Vector2 position, Vector2 geschwindigkeit,Einheit.Fraktion fraktion)
         {
-            _gegner.Add(new KleinerJaeger(geschwindigkeit, position, Raumschiff.Fraktion.gegner1));
+            _gegner.Add(new NPC(new KleinerJaeger(geschwindigkeit, position), fraktion));
         }
 
-        public static void SpawnGegner(Vector2 position)
+        public static void SpawnGegner(Vector2 position, Einheit.Fraktion fraktion)
         {
-            SpawnGegner(position, Vector2.Zero);
+            SpawnGegner(position, Vector2.Zero, fraktion);
         }
         #endregion
 
@@ -60,7 +60,7 @@ namespace Unendlich
             _zeitSeitLetztemSpawn += vergangenSeitLetztenFrame;
             if (_zeitSeitLetztemSpawn > _spawnZeitMin)
             {
-                SpawnGegner(Vector2.Zero);
+                SpawnGegner(Vector2.Zero, Einheit.Fraktion.gegner1);
                 _zeitSeitLetztemSpawn = 0f;
             }
 
@@ -70,7 +70,7 @@ namespace Unendlich
 
                 if (_gegner[i].istAktiv == false)
                 {
-                    if (_gegner[i].AnzahlSchuesse() == 0)//Gegner werden erst gelöscht, wenn alle Schüsse von Ihnen verschwunden sind
+                    if (_gegner[i].aktuellesSchiff.AnzahlSchuesse() == 0)//Gegner werden erst gelöscht, wenn alle Schüsse von Ihnen verschwunden sind
                         _gegner.RemoveAt(i);
                 }
                 else
@@ -82,7 +82,7 @@ namespace Unendlich
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Raumschiff gegner in _gegner)
+            foreach (NPC gegner in _gegner)
                 gegner.Draw(spriteBatch);
         }
         #endregion

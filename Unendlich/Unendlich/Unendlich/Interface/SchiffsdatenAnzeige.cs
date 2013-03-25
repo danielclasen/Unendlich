@@ -113,7 +113,7 @@ namespace Unendlich
             spriteBatch.DrawString(_schrift, "X", _position+ new Vector2(128, 53), Color.Black,0f,Vector2.Zero,1f,SpriteEffects.None,0.1f);
             spriteBatch.DrawString(
                 _schrift,
-                ((int)_spieler.weltmittelpunkt.X).ToString(),
+                ((int)_spieler.weltMittelpunkt.X).ToString(),
                 _position + new Vector2(149, 53),
                 Color.Black, 0f,
                 Vector2.Zero, 
@@ -125,7 +125,7 @@ namespace Unendlich
 
             spriteBatch.DrawString(
                 _schrift,
-                ((int)_spieler.weltmittelpunkt.Y).ToString(),
+                ((int)_spieler.weltMittelpunkt.Y).ToString(),
                 _position + new Vector2(149, 74),
                 Color.Black, 0f,
                 Vector2.Zero,
