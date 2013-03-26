@@ -61,6 +61,20 @@ namespace Unendlich
             get { return _schaden; }
         }
 
+        public float schuesseProSek
+        {
+            get { return 60.0f/_schussZeitMin; }
+        }
+
+        public float schussGeschwindigkeit
+        {
+            get { return _schussGeschwindigkeit; }
+        }
+
+        public float schadenProSek
+        {
+            get { return schaden * schuesseProSek; }
+        }
         #endregion
 
 

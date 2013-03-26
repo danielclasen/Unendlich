@@ -27,9 +27,23 @@ namespace Unendlich
 
 
         #region Eigenschaften
+
         public float zeitSeitLetztemTreffer
         {
             get { return _zeitSeitLetzemTreffer; }
+        }
+
+        public float schadenProSek
+        {
+            get
+            {
+                float schadenProSekGesamt = 0.0f;
+
+                foreach (BasisWaffe waffe in _waffen)
+                    schadenProSekGesamt += waffe.schadenProSek;
+
+                return schadenProSekGesamt;
+            }
         }
 
         public int energie

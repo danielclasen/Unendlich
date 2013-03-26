@@ -10,7 +10,9 @@ namespace Unendlich
     public class Einheit
     {
         #region Deklartion
-        
+        public enum Aufgabe { angreifen, fluechten, warten };
+        protected Stack<Aufgabe> aufgabenListe;
+
         public enum Fraktion { spieler1, gegner1, gegner2 };
         protected Fraktion _fraktion;
 
@@ -28,6 +30,33 @@ namespace Unendlich
         public bool istAktiv
         {
             get { return aktuellesSchiff.istAktiv; }
+        }
+
+        /// <summary>
+        /// Liefert den gesamten Schaden aller Verbündeten innerhalb eines bestimmten Bereiches.
+        /// Dieser Schaden wird abhängig von der Entfernung zum Spieler berechnet.
+        /// </summary>
+        public float verbuendetenSchaden
+        {
+            get
+            {
+                float schadenGesamt = 0.0f;
+
+                foreach (NPC potenziellerVerbuendeter in Gegnermanager.alleGegner)
+                {
+                    //Wenn der Spieler in einem Gewissenbreich (innerhalb von 20 Sek anwesend) ist 
+                    //UND nicht man selber UND in der selben Fraktion
+                    if (Vector2.Distance(this.weltMittelpunkt, potenziellerVerbuendeter.weltMittelpunkt) < potenziellerVerbuendeter.aktuellesSchiff.geschwindigkeitMax * 20f &&
+                        potenziellerVerbuendeter.fraktion == fraktion &&
+                        !potenziellerVerbuendeter.Equals(this))
+                    {
+                        //Schaden wird abhängig von der Entfernung addiert
+                        schadenGesamt += potenziellerVerbuendeter.aktuellesSchiff.schadenProSek * (1 - potenziellerVerbuendeter.aktuellesSchiff.geschwindigkeitMax / Vector2.Distance(weltMittelpunkt, potenziellerVerbuendeter.weltMittelpunkt));
+                    }
+                }
+                //Man selbst ist ja auch Verbündeter, sein eigener Schaden wird jedoch doppelt gewichtet
+                return schadenGesamt + aktuellesSchiff.schadenProSek * 2;
+            }
         }
         #endregion
 
@@ -67,6 +96,7 @@ namespace Unendlich
 
 
         #region Konstruktor
+        
         public Einheit(Raumschiff aktuellesRaumschiff, Fraktion fraktion)
         {
             //Auswahl des Anfangsraumschiffes

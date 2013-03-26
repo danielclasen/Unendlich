@@ -108,7 +108,7 @@ namespace Unendlich
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             
-            spriteBatch.DrawString(pericles14, gameTime.ElapsedGameTime.TotalSeconds.ToString(), Vector2.Zero, Color.White);
+            spriteBatch.DrawString(pericles14, (gameTime.ElapsedGameTime.TotalSeconds).ToString(), Vector2.Zero, Color.White);
 
             Spielmanager.DrawIngame(spriteBatch);
 

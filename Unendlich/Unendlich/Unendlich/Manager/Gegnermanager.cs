@@ -41,7 +41,7 @@ namespace Unendlich
 
         public static void SpawnGegner(Vector2 position, Vector2 geschwindigkeit,Einheit.Fraktion fraktion)
         {
-            _gegner.Add(new NPC(new KleinerJaeger(geschwindigkeit, position), fraktion));
+            _gegner.Add(new NPC(new KleinerJaeger(position,geschwindigkeit), fraktion));
         }
 
         public static void SpawnGegner(Vector2 position, Einheit.Fraktion fraktion)
@@ -58,9 +58,12 @@ namespace Unendlich
             //temporär
             float vergangenSeitLetztenFrame = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _zeitSeitLetztemSpawn += vergangenSeitLetztenFrame;
+
             if (_zeitSeitLetztemSpawn > _spawnZeitMin)
             {
-                SpawnGegner(Vector2.Zero, Einheit.Fraktion.gegner1);
+                SpawnGegner(new Vector2(5000, 5000), Einheit.Fraktion.gegner1);
+                SpawnGegner(new Vector2(-5000, -5000), Einheit.Fraktion.gegner2);
+                SpawnGegner(new Vector2(0, 0), Einheit.Fraktion.spieler1);
                 _zeitSeitLetztemSpawn = 0f;
             }
 
@@ -74,11 +77,11 @@ namespace Unendlich
                         _gegner.RemoveAt(i);
                 }
                 else
+                {
                     KI.BerechneLogik(_gegner[i]); // Berechnet Verhalten des Gegners
-                
+                }
             }
         }
-
 
         public static void Draw(SpriteBatch spriteBatch)
         {

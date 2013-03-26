@@ -28,7 +28,7 @@ namespace Unendlich
 
         #region Helfermethoden
 
-        private static void FliegeZuSpieler(NPC aktuellerGegner)
+        private static void FliegeZumZiel(NPC aktuellerGegner)
         {
             Vector2 richtungZuSpieler = Vector2.Zero;
 
@@ -39,7 +39,7 @@ namespace Unendlich
             aktuellerGegner.aktuellesSchiff.GeschwindigkeitAendern(richtungZuSpieler);
         }
 
-        private static float EntfernungZumSpieler(NPC aktuellerGegner)
+        private static float EntfernungZumZiel(NPC aktuellerGegner)
         {
             return Vector2.Distance(_spieler.weltMittelpunkt, aktuellerGegner.weltMittelpunkt);
         }
@@ -48,7 +48,7 @@ namespace Unendlich
         {
             Vector2 richtung = gegner.geschwindigkeit;
             richtung.Normalize();
-            richtung *= EntfernungZumSpieler(gegner);//multipliziert die Richtung des Gegeners mit der Entfernung
+            richtung *= EntfernungZumZiel(gegner);//multipliziert die Richtung des Gegeners mit der Entfernung
 
             //wenn der Gegner in die Richtung des 2fachen Kollisionsradius des Spieler fliegt, soll er den Spieler im Ziel haben
             if (Vector2.Distance(gegner.weltMittelpunkt + richtung, _spieler.weltMittelpunkt) < _spieler.kollisionsRadius * 2)
@@ -61,23 +61,55 @@ namespace Unendlich
         /// Überprüft die Distanz zum Spieler und schießt, wenn der Spieler näher als Feuerreichweite ist und sich der Spieler im Ziel befindet
         /// </summary>
         /// <param name="gegner"></param>
-        private static void SchiesseAufSpieler(NPC gegner)
+        private static void SchiesseAufZiel(NPC gegner)
         {
             //Prüfungen werden geteilt, um Rechenleistung zu sparen
             if (IstSpielerImZiel(gegner))
-                if (EntfernungZumSpieler(gegner) < gegner.aktuellesSchiff.waffenreichweite)
+                if (EntfernungZumZiel(gegner) < gegner.aktuellesSchiff.waffenreichweite)
                     gegner.aktuellesSchiff.BefehlZumFeuern();
         }
 
-        private static void BerechneNaechstenSchritt(Raumschiff aktuellerGegner)
+        private static float BerechneSchadesVerhaeltis(Einheit aktuellerGegner, Einheit potenziellesZiel)
+        {
+            return potenziellesZiel.verbuendetenSchaden / aktuellerGegner.verbuendetenSchaden;
+        }
+
+        private static Einheit BerechneNaechstesZiel(Einheit aktuelleEinheit)
+        {
+            Einheit naechstesZiel = null;
+            float naechsteEntfernung = 0.0f;
+
+            foreach (NPC gegner in Gegnermanager.alleGegner)
+            {
+                if (gegner.fraktion != aktuelleEinheit.fraktion)
+                {
+                    if (naechstesZiel == null ||
+                        (aktuelleEinheit.fraktion != gegner.fraktion && naechsteEntfernung > Vector2.Distance(gegner.weltMittelpunkt, aktuelleEinheit.weltMittelpunkt)))
+                    {
+                        naechstesZiel = gegner;
+                        naechsteEntfernung = Vector2.Distance(aktuelleEinheit.weltMittelpunkt, naechstesZiel.weltMittelpunkt);
+                    }
+                }
+            }
+
+            if (aktuelleEinheit.fraktion != _spieler.fraktion && (naechstesZiel==null || Vector2.Distance(aktuelleEinheit.weltMittelpunkt,_spieler.weltMittelpunkt)<naechsteEntfernung))
+            {
+                naechstesZiel=_spieler;
+            }
+
+            return naechstesZiel;
+        }
+
+        private static void BerechneNaechstenSchritt(NPC aktuellerGegner)
         {
             
         }
 
         private static void FuehreAngriffAus(NPC aktuellerGegner)
         {
-            FliegeZuSpieler(aktuellerGegner);
-            SchiesseAufSpieler(aktuellerGegner);
+            FliegeZumZiel(aktuellerGegner);
+            BerechneSchadesVerhaeltis(aktuellerGegner, BerechneNaechstesZiel(aktuellerGegner));
+            SchiesseAufZiel(aktuellerGegner);
         }
 
         private static void FuehereFluchtAus(NPC aktuellerGegner)
