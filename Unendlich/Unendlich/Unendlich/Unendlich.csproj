@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasisKlassen\AnimationsStreifen.cs" />
-    <Compile Include="BasisKlassen\Einheit.cs" />
+    <Compile Include="Einheiten\Einheit.cs" />
     <Compile Include="Helferklassen\KI.cs" />
     <Compile Include="Manager\Effekte\Schildtreffer.cs" />
     <Compile Include="Raumschiffe\Schild\BSchild.cs" />
@@ -122,7 +122,8 @@
     <Compile Include="Raumschiffe\Waffe\MG.cs" />
     <Compile Include="Weltkomponenten\Asteroid.cs" />
     <Compile Include="Manager\Effekte\Explosion.cs" />
-    <Compile Include="NPC.cs" />
+    <Compile Include="Einheiten\NPC.cs" />
+    <Compile Include="Quadrant.cs" />
     <None Include="Alter Code\KurzlebigeTeilchen%28alt%29" />
     <None Include="Alter Code\KurzlebigeTeilchen%28neuer, auch alt%29" />
     <Compile Include="Manager\Effektmanager.cs" />
@@ -138,7 +139,7 @@
     <Compile Include="Raumschiffe\Raumschiff.cs" />
     <Compile Include="Raumschiffe\Waffe\BasisWaffe.cs" />
     <None Include="Alter Code\Schussmanager%28alt%29" />
-    <Compile Include="Spieler.cs" />
+    <Compile Include="Einheiten\Spieler.cs" />
     <Compile Include="Manager\Spielmanager.cs" />
     <None Include="Alter Code\Sprite%28alt%29" />
     <Compile Include="BasisKlassen\Kamera.cs" />

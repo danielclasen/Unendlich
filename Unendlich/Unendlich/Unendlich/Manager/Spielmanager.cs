@@ -10,19 +10,19 @@ namespace Unendlich
 {
     public static class Spielmanager
     {
-        private static Spieler _spieler;
+        public static List<Quadrant> weltall;
 
-        public static void Init(Spieler spieler)
+        public static void Init()
         {
+            weltall = new List<Quadrant>();
+            weltall.Add(new Quadrant());
+
+            weltall[0].HinzufuegenSpieler(new Spieler());
+
             Helferklasse.Init();
 
-            _spieler = spieler;
-
-            Gegnermanager.Init();
-
-            Anzeige.Init(spieler);
-            KI.Init(_spieler);
-            Kollisionsmanager.Init(spieler);           
+            Anzeige.Init((Spieler)weltall[0].alleSpieler[0]);
+            KI.Init((Spieler)weltall[0].alleSpieler[0]);
             
             Sternenhimmel.Init();
             Effektmanager.Init();
@@ -47,7 +47,8 @@ namespace Unendlich
 
         public static void UpdateIngame(GameTime gameTime)
         {
-            _spieler.Update(gameTime);
+            //temporärer Code
+            weltall[0].Update(gameTime);
 
             Gegnermanager.Update(gameTime);
 
@@ -64,9 +65,8 @@ namespace Unendlich
         public static void DrawIngame(SpriteBatch spriteBatch)
         {
             Sternenhimmel.Draw(spriteBatch);
-            _spieler.Draw(spriteBatch);
 
-            Gegnermanager.Draw(spriteBatch);
+            weltall[0].Draw(spriteBatch);
 
             Effektmanager.Draw(spriteBatch);
             Anzeige.Draw(spriteBatch);

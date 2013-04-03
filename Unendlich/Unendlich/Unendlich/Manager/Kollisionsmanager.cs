@@ -8,49 +8,35 @@ namespace Unendlich
 {
     public class Kollisionsmanager
     {
-        #region Deklaration
-
-        private static Spieler _spieler;
-        #endregion
-
-
-        #region Init
-
-        public static void Init(Spieler spieler)
-        {
-            _spieler = spieler;
-        }
-        #endregion
-
-
+        
         #region Helfer Methoden
 
-        protected static void SchussTrifftGegner()
+        protected static void SchussTrifftNPC()
         {
-            for (int i = 0; i < Gegnermanager.alleGegner.Count; i++)
+            for (int i = 0; i < Spielmanager.weltall[0].alleNPCs.Count; i++)
             {
-                for (int k = 0; k < Gegnermanager.alleGegner.Count; k++)
+                for (int k = 0; k < Spielmanager.weltall[0].alleNPCs.Count; k++)
                 {
                     if (i == k)//wenn i==j wahr ist, handelt es sich um den selben Gegener (Gegner soll sich nicht selbst abschießen können)
                         continue;
                     else
                     {
-                        foreach (Schuss schuss in Gegnermanager.alleGegner[i].aktuellesSchiff.AlleSchuesse())
+                        foreach (Schuss schuss in Spielmanager.weltall[0].alleNPCs[i].aktuellesSchiff.AlleSchuesse())
                         {
-                            if (Gegnermanager.alleGegner[k].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                            if (Spielmanager.weltall[0].alleNPCs[k].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                             {
-                                Gegnermanager.alleGegner[k].aktuellesSchiff.WurdeGetroffen(schuss);
+                                Spielmanager.weltall[0].alleNPCs[k].aktuellesSchiff.WurdeGetroffen(schuss);
                                 schuss.HatGetroffen();
                             }
                         }
                     }
                 }
 
-                foreach (Schuss schuss in _spieler.aktuellesSchiff.AlleSchuesse())
+                foreach (Schuss schuss in Spielmanager.weltall[0].alleSpieler[0].aktuellesSchiff.AlleSchuesse())
                 {
-                    if (Gegnermanager.alleGegner[i].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                    if (Spielmanager.weltall[0].alleNPCs[i].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                     {
-                        Gegnermanager.alleGegner[i].aktuellesSchiff.WurdeGetroffen(schuss);
+                        Spielmanager.weltall[0].alleNPCs[i].aktuellesSchiff.WurdeGetroffen(schuss);
                         schuss.HatGetroffen();
 
                         //Hier können nachher Punkte vergeben werden
@@ -62,10 +48,10 @@ namespace Unendlich
         protected static List<Schuss> AlleSchuesse()
         {
             List<Schuss> alleSchuesse = new List<Schuss>();
-            alleSchuesse.AddRange(_spieler.aktuellesSchiff.AlleSchuesse());
+            alleSchuesse.AddRange(Spielmanager.weltall[0].alleSpieler[0].aktuellesSchiff.AlleSchuesse());
 
 
-            foreach (NPC gegner in Gegnermanager.alleGegner)
+            foreach (NPC gegner in Spielmanager.weltall[0].alleNPCs)
                 alleSchuesse.AddRange(gegner.aktuellesSchiff.AlleSchuesse());
 
             return alleSchuesse;
@@ -74,13 +60,13 @@ namespace Unendlich
         protected static void SchussTrifftSpieler()
         {
 
-            foreach (NPC gegner in Gegnermanager.alleGegner)
+            foreach (NPC gegner in Spielmanager.weltall[0].alleNPCs)
                 foreach (Schuss schuss in gegner.aktuellesSchiff.AlleSchuesse())
                 {
-                    if (_spieler.aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
+                    if (Spielmanager.weltall[0].alleSpieler[0].aktuellesSchiff.IstKreisKollision(schuss.weltMittelpunkt, schuss.kollisionsRadius))
                     {
                         //Zu Testzwecken kann der Spieler nicht zerstört werden
-                        _spieler.aktuellesSchiff.WurdeGetroffen(schuss);
+                        Spielmanager.weltall[0].alleSpieler[0].aktuellesSchiff.WurdeGetroffen(schuss);
                         schuss.HatGetroffen();
                     }
                 }
@@ -128,7 +114,7 @@ namespace Unendlich
 
         public static void Update(GameTime gameTime)
         {
-            SchussTrifftGegner();
+            SchussTrifftNPC();
             SchussTrifftSpieler();
             SchussTrifftSchuss();
 

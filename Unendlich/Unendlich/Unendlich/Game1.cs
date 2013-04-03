@@ -22,8 +22,6 @@ namespace Unendlich
 
         int startScreenBreite = 1600;
         int startScreenHoehe = 900;
-
-        Spieler spieler;
         
         //temporär
         SpriteFont pericles14;
@@ -52,9 +50,8 @@ namespace Unendlich
             Kamera.Init(Vector2.Zero);//noch nicht optimal, je nach anforderung
 
             Spielmanager.LoadContent(Content);//muss vorher initialisiert werden, da ansonsten dem Spieler keine Textur zugeordnet werden kann
-            spieler = new Spieler();
 
-            Spielmanager.Init(spieler);
+            Spielmanager.Init();
 
             base.Initialize();
         }
@@ -111,11 +108,6 @@ namespace Unendlich
             spriteBatch.DrawString(pericles14, (gameTime.ElapsedGameTime.TotalSeconds).ToString(), Vector2.Zero, Color.White);
 
             Spielmanager.DrawIngame(spriteBatch);
-
-
-            //temporär
-            //asteroidenfeld.Draw(spriteBatch);
-
 
             spriteBatch.End();
 

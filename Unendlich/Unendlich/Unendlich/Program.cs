@@ -15,6 +15,10 @@
  * 
  * Effektmanager:
  *      -Animationen starten zufällig
+ *      
+ * 
+ * Anzeige/Interface
+ *      -gegebenfalls die Anzeige der Position überarbeiten
  *
  * 
  * Behobene Bug:
@@ -25,6 +29,8 @@
  *              -durch Angabe des Mittelpunkts als Rotationspunkt musste auch der Zeichenpunkt als Mitte und nicht mehr als Position(linke, obere Ecke) angegeben werden
  *          -da die Animationen statisch sind, hat jedes Raumschiff die selbe Zeit seit dem letzten Frame
  *              -in der Folge werden die Animationen immer schneller durchlaufen
+ *          -Strukturänderung
+ *              -Alle Objekte eines Sektors kommen in eine Liste, die dann durch gegangen wird
  *      
  * Schiffswaffen:
  *          -Waffenrotation berichtigen!!!
@@ -47,9 +53,6 @@
  *      -neue Zufallsfunktion einfügen, alte ersetzten
  *          -testen ob es mit einem Random über die Helferklasse geht
  *
- *      -Anzeige/Interface
- *          
- *          -gegebenfalls die Anzeige der Position überarbeiten
  * 
  *      -Effektmanager, Explosion und Effekt gegebenfalls überarbeitet
  *          -vielleicht Schildtreffer überarbeiten (wahrscheinlich nur Textur)
@@ -58,6 +61,11 @@
  *      -Asteroiden werden erstmal nachhinten verschoben
  *          -(Asteroiden eiern bei der Rotation)-->wahrscheinlich liegt das an skalierung
  *              -entweder die Seitenlängen belassen oder den Mittelpunkt anders berechnen
+ *              
+ *      -Wie sollen die Einheiten nachher mal verwaltet werden??
+ *      
+ *      -KI zuende enwickeln
+ * 
  *      BUGS:
  *          
  *     

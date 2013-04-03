@@ -95,7 +95,7 @@ namespace Unendlich
             get { return hp / hpMax; }
         }
 
-        public float schild
+        public float schildRest
         {
             get { return _schild.schildRest; }
         }
