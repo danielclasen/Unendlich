@@ -24,7 +24,6 @@ namespace Unendlich
 
         static private List<Partikel> _effekte;
         static private List<Explosion> _explosionen;
-        static private List<Abgase> _abgase;
         #endregion
 
 
@@ -34,7 +33,6 @@ namespace Unendlich
         {
             _effekte = new List<Partikel>();
             _explosionen = new List<Explosion>();
-            _abgase = new List<Abgase>();
         }
         #endregion
 
@@ -44,16 +42,6 @@ namespace Unendlich
         public static void HinzufuegenSchildeffekt(Raumschiff getroffenesSchiff, Schuss schuss)
         {
             _effekte.Add(new Schildtreffer(getroffenesSchiff,schuss));
-        }
-
-        public static void HinzufuegenAbgaseffekt(Raumschiff raumschiff)
-        {
-            int anzahlEffekte = Helferklasse.rand.Next(10, 15);
-
-            for (int i = 0; i < anzahlEffekte; i++)
-            {
-                _effekte.Add(new Abgase(raumschiff.weltMittelpunkt, Helferklasse.ZufallsGeschwindigkeit(15, 20)));
-            }
         }
 
         public static void HinzufuegenExplosion(
