@@ -10,7 +10,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\KleinerJaeger\KleinerJaeger_fliegen.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\KleinerJaeger\KleinerJaeger_fliegen.xnb</Output>
       <Time>2013-03-17T20:32:54+01:00</Time>
     </Item>
     <Item>
@@ -19,7 +19,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\WeiserPixel.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\WeiserPixel.xnb</Output>
       <Time>2013-02-23T19:41:08+01:00</Time>
     </Item>
     <Item>
@@ -28,7 +28,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern2.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern2.xnb</Output>
       <Time>2013-02-23T19:41:08+01:00</Time>
     </Item>
     <Item>
@@ -37,7 +37,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern3.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern3.xnb</Output>
       <Time>2013-02-23T19:41:08+01:00</Time>
     </Item>
     <Item>
@@ -49,7 +49,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_aktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_aktiv.xnb</Output>
       <Time>2013-03-17T20:32:42+01:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_inaktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_inaktiv.xnb</Output>
       <Time>2013-03-17T20:32:44+01:00</Time>
     </Item>
     <Item>
@@ -70,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_schuss.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\Laser\Laser_schuss.xnb</Output>
       <Time>2013-02-25T09:52:06+01:00</Time>
     </Item>
     <Item>
@@ -82,7 +82,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\Explosion_aktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\Explosion_aktiv.xnb</Output>
       <Time>2013-03-02T15:23:08+01:00</Time>
     </Item>
     <Item>
@@ -91,7 +91,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern1.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Sternenhimmel\Stern1.xnb</Output>
       <Time>2013-03-01T15:26:28+01:00</Time>
     </Item>
     <Item>
@@ -103,7 +103,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid1_fliegt.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid1_fliegt.xnb</Output>
       <Time>2013-03-08T21:20:42+01:00</Time>
     </Item>
     <Item>
@@ -115,7 +115,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid3_fliegt.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid3_fliegt.xnb</Output>
       <Time>2013-03-08T21:20:50+01:00</Time>
     </Item>
     <Item>
@@ -127,7 +127,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid2_fliegt.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Weltraumobjekte\Asteroid2_fliegt.xnb</Output>
       <Time>2013-03-08T21:20:46+01:00</Time>
     </Item>
     <Item>
@@ -139,7 +139,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\GrosserJaeger\GrosserJaeger_fliegen.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\GrosserJaeger\GrosserJaeger_fliegen.xnb</Output>
       <Time>2013-03-17T15:08:44+01:00</Time>
     </Item>
     <Item>
@@ -151,7 +151,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Interface\Interface_Statusbalken.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Interface\Interface_Statusbalken.xnb</Output>
       <Time>2013-03-17T14:21:08+01:00</Time>
     </Item>
     <Item>
@@ -163,7 +163,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Interface\Interface_Hintergrund.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Interface\Interface_Hintergrund.xnb</Output>
       <Time>2013-03-20T16:47:52+01:00</Time>
     </Item>
     <Item>
@@ -175,7 +175,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Spaeher\Spaeher_fliegen.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Spaeher\Spaeher_fliegen.xnb</Output>
       <Time>2013-03-17T20:20:04+01:00</Time>
     </Item>
     <Item>
@@ -187,7 +187,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_schuss.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_schuss.xnb</Output>
       <Time>2013-03-17T21:02:24+01:00</Time>
     </Item>
     <Item>
@@ -199,7 +199,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_inaktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_inaktiv.xnb</Output>
       <Time>2013-03-17T22:01:00+01:00</Time>
     </Item>
     <Item>
@@ -211,7 +211,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_aktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\MG\MG_aktiv.xnb</Output>
       <Time>2013-03-18T17:44:50+01:00</Time>
     </Item>
     <Item>
@@ -223,7 +223,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\SchildTreffer_aktiv.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\SchildTreffer_aktiv.xnb</Output>
       <Time>2013-03-21T18:35:02+01:00</Time>
     </Item>
     <Item>
@@ -232,7 +232,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\pericles14.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\pericles14.xnb</Output>
       <Time>2013-02-24T17:02:02+01:00</Time>
     </Item>
     <Item>
@@ -241,7 +241,7 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\kootenay12.xnb</Output>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\kootenay12.xnb</Output>
       <Time>2013-03-17T16:28:14+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -250,10 +250,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>F:\Csharp\Unendlich\Unendlich\Unendlich\UnendlichContent\</RootDirectory>
-      <LoggerRootDirectory>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\</LoggerRootDirectory>
-      <IntermediateDirectory>F:\Csharp\Unendlich\Unendlich\Unendlich\UnendlichContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\UnendlichContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\UnendlichContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -282,7 +282,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-10-11T18:27:49.3623083+02:00</Value>
+        <Value>2012-10-12T15:22:30.9082471+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

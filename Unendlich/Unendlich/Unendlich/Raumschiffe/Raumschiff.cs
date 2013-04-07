@@ -153,12 +153,26 @@ namespace Unendlich
             _schild = neuesSchild;
         }
 
+        /// <summary>
+        /// Ändert die Geschwindigkeit. Schubkraft ist stets 100%
+        /// </summary>
+        /// <param name="neueRichtung"></param>
         public void GeschwindigkeitAendern(Vector2 neueRichtung)
         {
-            if (neueRichtung != Vector2.Zero)
+            GeschwindigkeitAendern(neueRichtung, 1);
+        }
+
+        /// <summary>
+        /// Es kann angegeben werden, wie stark beschleunigt werden soll
+        /// </summary>
+        /// <param name="neueRichtung"></param>
+        /// <param name="schubKraft"></param>
+        public void GeschwindigkeitAendern(Vector2 neueRichtung, float schubKraft)
+        {
+            if (neueRichtung != Vector2.Zero && schubKraft != 0)
             {
                 neueRichtung.Normalize();
-                neueRichtung *= schub;
+                neueRichtung *= schub * schubKraft;
                 SetzeGeschwindigkeit(geschwindigkeit + neueRichtung);
             }
         }

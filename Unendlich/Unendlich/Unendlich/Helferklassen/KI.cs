@@ -45,7 +45,7 @@ namespace Unendlich
             return Vector2.Distance(gegner.weltMittelpunkt, aktuellerNpc.weltMittelpunkt);
         }
 
-        private static bool IstGegnerImZiel(Einheit aktuelleEinheit, Einheit gegner)
+        private static bool IstObjektImZiel(Einheit aktuelleEinheit, Einheit gegner)
         {
             Vector2 richtung = aktuelleEinheit.geschwindigkeit;
             richtung.Normalize();
@@ -64,19 +64,28 @@ namespace Unendlich
         /// <param name="npc"></param>
         private static void SchiesseBeiZiel(NPC npc)
         {
+            bool sollSchiessen=false;
+
             foreach (Einheit einheit in Spielmanager.weltall[0].alleEinheiten)
             {
                 //Er soll nicht auf Verbündete schießen
                 if (npc.fraktion == einheit.fraktion)
                     continue;
 
-                if (IstGegnerImZiel(npc,einheit))
-                    if (EntfernungZumZiel(npc,einheit) < npc.aktuellesSchiff.waffenreichweite)
+                if (IstObjektImZiel(npc, einheit) && EntfernungZumZiel(npc, einheit) < npc.aktuellesSchiff.waffenreichweite)// es befindet sich wer im Ziel
+                {
+                    if (npc.fraktion == einheit.fraktion)// ein Verbündeter
                     {
-                        npc.aktuellesSchiff.BefehlZumFeuern();
-                        break;
+                        sollSchiessen = false;
+                        break;// er soll nicht schießen
                     }
+                    else if (sollSchiessen == false)
+                        sollSchiessen = true; //wenn kein Verbündeter mehr im Ziel ist, soll geschossen werden
+                }
             }
+
+            if (sollSchiessen == true)
+                npc.aktuellesSchiff.BefehlZumFeuern();
         }
 
         private static float BerechneSchadesVerhaeltis(Einheit aktuellerNpc, Einheit potenziellesZiel)
@@ -118,6 +127,7 @@ namespace Unendlich
             }
 
             aktuelleEinheit.naechstesZiel = naechstesZiel;
+            aktuelleEinheit.entfernungZuZiel = naechsteEntfernung;
         }
 
         private static void BerechneVerhalten(NPC aktuellerNpc)
@@ -139,50 +149,103 @@ namespace Unendlich
 
             float ergebnis = verhaeltnisSchaden + verhaeltnisSchild + verhaeltnisHP + verhaeltnisGeschwindigkeit;
 
-            if (ergebnis < 0.8f)
+            if (ergebnis < 0.5f)
                 _verhalten = MoeglicheAktionen.Flucht;
             else
                 _verhalten = MoeglicheAktionen.Angriff;
         }
 
-        private static Vector2 BerechneAngriff(NPC aktuellerNpc)
+        private static Vector2 BerechneAngriff(Einheit aktuellerNpc)
         {
             return aktuellerNpc.naechstesZiel.weltMittelpunkt;
         }
 
-        private static Vector2 BerechneFlucht(NPC aktuellerNpc)
+        private static Vector2 BerechneFlucht(Einheit aktuellerNpc)
         {
-            Vector2 fluchtpunkt = aktuellerNpc.naechstesZiel.weltMittelpunkt - aktuellerNpc.weltposition;
-            fluchtpunkt.Normalize();//Vektor von Gegner weg
-            
-            fluchtpunkt*=1000;//Entfernung wird berechnet
+            Vector2 fluchtpunkt = Vector2.Zero;//aktuellerNpc.naechstesZiel.weltMittelpunkt - aktuellerNpc.weltposition;
 
-            return fluchtpunkt + aktuellerNpc.weltMittelpunkt;
+            if (aktuellerNpc.weltMittelpunkt.X > aktuellerNpc.naechstesZiel.weltMittelpunkt.X)
+            {
+                fluchtpunkt.X = 1000;
+            }
+            else if (aktuellerNpc.weltMittelpunkt.X < aktuellerNpc.naechstesZiel.weltMittelpunkt.X)
+            {
+                fluchtpunkt.X = -1000;
+            }
+
+            if (aktuellerNpc.weltMittelpunkt.Y > aktuellerNpc.naechstesZiel.weltMittelpunkt.Y)
+            {
+                fluchtpunkt.Y = 1000;
+            }
+            else if (aktuellerNpc.weltMittelpunkt.Y < aktuellerNpc.naechstesZiel.weltMittelpunkt.Y)
+            {
+                fluchtpunkt.Y = -1000;
+            }
+
+            return aktuellerNpc.weltMittelpunkt + fluchtpunkt;
         }
 
-        private static void FuehreWartenAus(NPC aktuellerNpc)
+        private static void FuehreWartenAus(Einheit aktuellerNpc)
         {
 
         }
-/*
+
+        private static void PruefeZielerfuellung(Einheit aktuelleEinheit)
+        {
+            if (_verhalten == MoeglicheAktionen.Flucht)
+            {
+                if (aktuelleEinheit.entfernungZuZiel > 2000)
+                    aktuelleEinheit.ZielErfuellt();
+            }
+            else if (_verhalten == MoeglicheAktionen.Angriff)
+            {
+                if (!aktuelleEinheit.naechstesZiel.istAktiv || aktuelleEinheit.entfernungZuZiel>1000)
+                    aktuelleEinheit.ZielErfuellt();
+            }
+        }
+
+        /// <summary>
+        /// Prüft alle Einheite (nachher alle Objekte) innerhalb des Sektor. Befinden sich die innerhalb eines gewissen Radius (x-fache Kollisionsradius) wird überprüft, welches Objekt das nächste ist.
+        /// Anschließend wir versucht, dem Objekt bestmöglich auszuweichen.
+        /// </summary>
+        /// <param name="aktuellerNPC"></param>
+        /// <returns>Es wird der Ausweichvektor zurück gegeben</returns>
         private static Vector2 Ausweichen(NPC aktuellerNPC)
         {
             SpielObjekt naechstesObjekt = null;
-            float naechsteEntfernung = 0.0f;
-            Vector2 ausweichVektor = Vector2.Zero;
+            float naechsteEntfernungBisKollision = 0.0f;
+            float berücksichtigungsRadius = aktuellerNPC.kollisionsRadius * 10;//Radius, in dem Objekte brücksichtigt werdem
 
             foreach (Einheit einheit in Spielmanager.weltall[0].alleEinheiten)
             {
                 //Nur Objekte in gewissem Radius
-                if (Vector2.Distance(einheit.weltMittelpunkt, aktuellerNPC.weltMittelpunkt) < aktuellerNPC.kollisionsRadius * 10 &&
-                    !einheit.Equals(aktuellerNPC) && (naechstesObjekt == null ||
-                   (naechsteEntfernung > Vector2.Distance(einheit.weltMittelpunkt, aktuellerNPC.weltMittelpunkt))))
+                if ((naechstesObjekt == null ||
+                    naechsteEntfernungBisKollision > Vector2.Distance(einheit.weltMittelpunkt, aktuellerNPC.weltMittelpunkt) - einheit.kollisionsRadius + aktuellerNPC.kollisionsRadius) &&
+                    !einheit.Equals(aktuellerNPC) &&
+                    Vector2.Distance(einheit.weltMittelpunkt, aktuellerNPC.weltMittelpunkt) - einheit.kollisionsRadius < berücksichtigungsRadius)
                 {
                     naechstesObjekt = (SpielObjekt)einheit.aktuellesSchiff;
+                    naechsteEntfernungBisKollision = Vector2.Distance(aktuellerNPC.weltMittelpunkt, einheit.weltMittelpunkt) - aktuellerNPC.kollisionsRadius - einheit.kollisionsRadius; //Von der Entfernung wird noch die Größe der beiden Objekte abgezogen
                 }
             }
+
+            if (naechstesObjekt != null)
+            {
+                Vector2 ausweichVektor = Vector2.Zero;
+                ausweichVektor = aktuellerNPC.weltMittelpunkt - naechstesObjekt.weltMittelpunkt;
+                ausweichVektor.Normalize();
+                ausweichVektor *= (1 - naechsteEntfernungBisKollision / berücksichtigungsRadius);// Vielleicht zu stark gewichtet
+                return ausweichVektor;
+            }
+            else
+                return Vector2.Zero; //Falls kein Objekt in der Nähe ist
         }
-        */
+
+        /// <summary>
+        /// Führt "FlugbahnZumNaechstenZiel" und "Ausweichen" aus
+        /// Abschließend wird die neue Richtung an "aktuellerNpc.GeschwindigkeitAendern" übergeben
+        /// </summary>
+        /// <param name="aktuellerNpc"></param>
         private static void BerechneFlugbahn(NPC aktuellerNpc)
         {
             Vector2 zielKoordinate = Vector2.Zero;
@@ -193,9 +256,12 @@ namespace Unendlich
             else if (_verhalten == MoeglicheAktionen.Flucht)
                 zielKoordinate = BerechneFlucht(aktuellerNpc);
 
-            Vector2 flugrichtung = FlugbahnZumNaechstenZiel(aktuellerNpc.weltMittelpunkt, zielKoordinate);
+            Vector2 flugRichtung = FlugbahnZumNaechstenZiel(aktuellerNpc.weltMittelpunkt, zielKoordinate);
+            Vector2 ausweichRichtung = Ausweichen(aktuellerNpc); //nur das nahste Objekte wird berücksichtig
 
-            aktuellerNpc.aktuellesSchiff.GeschwindigkeitAendern(flugrichtung);
+            flugRichtung *= (1 - ausweichRichtung.Length());
+
+            aktuellerNpc.aktuellesSchiff.GeschwindigkeitAendern(flugRichtung + ausweichRichtung);
         }
         #endregion
 
@@ -210,6 +276,8 @@ namespace Unendlich
             BerechneVerhalten(npc);
             BerechneFlugbahn(npc);
             SchiesseBeiZiel(npc);
+
+            PruefeZielerfuellung(npc);
         }
         #endregion
     }

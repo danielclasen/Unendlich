@@ -12,6 +12,7 @@ namespace Unendlich
         #region Deklartion
         
         protected Stack<Einheit> _naechstesZiel;
+        protected float _entfernungZuZiel;
 
         public enum Fraktion { spieler1, gegner1, gegner2 };
         protected Fraktion _fraktion;
@@ -76,6 +77,12 @@ namespace Unendlich
             {
                 _naechstesZiel.Push(value);
             }
+        }
+
+        public float entfernungZuZiel
+        {
+            get { return _entfernungZuZiel; }
+            set { _entfernungZuZiel = MathHelper.Max(0, value); }
         }
 
         /// <summary>
@@ -148,6 +155,11 @@ namespace Unendlich
 
         #region Helfermtehoden
 
+        public void ZielErfuellt()
+        {
+            _naechstesZiel.Pop();
+        }
+
         private float VerhaeltnisEntfernungGeschwindigkeitMax(Einheit andereEinheit)
         {
             return andereEinheit.aktuellesSchiff.geschwindigkeitMax / Vector2.Distance(weltMittelpunkt, andereEinheit.weltMittelpunkt);
@@ -164,6 +176,9 @@ namespace Unendlich
 
         public virtual void Update(GameTime gameTime)
         {
+            if (naechstesZiel != null)
+                entfernungZuZiel = Vector2.Distance(weltMittelpunkt, naechstesZiel.weltMittelpunkt);
+
             _aktuellesSchiff.Update(gameTime);  //aktuallisiert unter anderem auch die Position in GrafikObjekt
         }
 
