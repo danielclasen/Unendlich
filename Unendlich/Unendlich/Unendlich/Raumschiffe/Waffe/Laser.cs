@@ -51,6 +51,20 @@ namespace Unendlich
             base.Schiessen(new Vector2(positionMuendung.X, -positionMuendung.Y));
         }
 
+        public override bool IstObjektImZiel(Einheit andereEinheit)
+        {
+            Vector2 richtung = _schiff.geschwindigkeit;
+            richtung.Normalize();
+            richtung *= Vector2.Distance(_schiff.weltMittelpunkt, andereEinheit.weltMittelpunkt);//multipliziert die Richtung des Gegeners mit der Entfernung
+
+            //wenn der Gegner in die Richtung des 2fachen Kollisionsradius des Spieler fliegt, soll er den Spieler im Ziel haben
+            if (Vector2.Distance(_schiff.weltMittelpunkt + richtung, andereEinheit.weltMittelpunkt) < andereEinheit.kollisionsRadius * 2)
+                return true;
+            else
+                return false;
+        }
+
+
         #endregion
     }
 }

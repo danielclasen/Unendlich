@@ -33,6 +33,11 @@ namespace Unendlich
             get { return _zeitSeitLetzemTreffer; }
         }
 
+        public List<BasisWaffe> waffen
+        {
+            get { return _waffen; }
+        }
+
         public float schadenProSek
         {
             get
@@ -55,19 +60,14 @@ namespace Unendlich
         {
             get
             {
-                if (_waffen.Count == 0)
-                    return 0;
-                else
+                int maxWaffenreichweite = 0;
+                
+                foreach(BasisWaffe waffe in _waffen)
                 {
-                    float maxEngergieverbrauch = _waffen[0].energieVerbrauch;
-
-                    for (int i = 1; i < _waffen.Count; i++)
-                        maxEngergieverbrauch = MathHelper.Max(maxEngergieverbrauch, _waffen[i].energieVerbrauch);
-
-                    return (int)(energie / maxEngergieverbrauch);
+                    maxWaffenreichweite = (int)MathHelper.Max(maxWaffenreichweite, waffe.waffenreichweite);
                 }
+                return maxWaffenreichweite;
             }
-
         }
 
         public int geschwindigkeitMax

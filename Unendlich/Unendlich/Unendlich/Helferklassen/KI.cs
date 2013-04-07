@@ -45,7 +45,7 @@ namespace Unendlich
             return Vector2.Distance(gegner.weltMittelpunkt, aktuellerNpc.weltMittelpunkt);
         }
 
-        private static bool IstObjektImZiel(Einheit aktuelleEinheit, Einheit gegner)
+        /*private static bool IstObjektImZiel(Einheit aktuelleEinheit, Einheit gegner)
         {
             Vector2 richtung = aktuelleEinheit.geschwindigkeit;
             richtung.Normalize();
@@ -56,7 +56,7 @@ namespace Unendlich
                 return true;
             else
                 return false;
-        }
+        }*/
 
         /// <summary>
         /// Überprüft die Distanz zum Spieler und schießt, wenn der Spieler näher als Feuerreichweite ist und sich der Spieler im Ziel befindet
@@ -64,23 +64,23 @@ namespace Unendlich
         /// <param name="npc"></param>
         private static void SchiesseBeiZiel(NPC npc)
         {
-            bool sollSchiessen=false;
+            bool sollSchiessen = false;
 
-            foreach (Einheit einheit in Spielmanager.weltall[0].alleEinheiten)
+            foreach (Einheit andereEinheit in Spielmanager.weltall[0].alleEinheiten)
             {
-                //Er soll nicht auf Verbündete schießen
-                if (npc.fraktion == einheit.fraktion)
-                    continue;
-
-                if (IstObjektImZiel(npc, einheit) && EntfernungZumZiel(npc, einheit) < npc.aktuellesSchiff.waffenreichweite)// es befindet sich wer im Ziel
+                foreach (BasisWaffe waffe in npc.aktuellesSchiff.waffen)
                 {
-                    if (npc.fraktion == einheit.fraktion)// ein Verbündeter
+                    if (npc.aktuellesSchiff.waffen[0].IstObjektImZiel(andereEinheit) 
+                        && waffe.IstInReichweite(andereEinheit))// es befindet sich wer im Ziel
                     {
-                        sollSchiessen = false;
-                        break;// er soll nicht schießen
+                        if (npc.fraktion == andereEinheit.fraktion)// ein Verbündeter
+                        {
+                            sollSchiessen = false;
+                            break;// er soll nicht schießen
+                        }
+                        else
+                            sollSchiessen = false;
                     }
-                    else if (sollSchiessen == false)
-                        sollSchiessen = true; //wenn kein Verbündeter mehr im Ziel ist, soll geschossen werden
                 }
             }
 

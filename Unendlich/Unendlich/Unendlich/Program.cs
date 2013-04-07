@@ -44,6 +44,9 @@
  * 
  * Zu tun:
  * *******
+ *      -KI.SchiesseBeiZiel muss überarbeitet werden
+ *          -momentan wird nicht geschossen
+ * 
  *      -Interface Klassendesign überarbeiten
  *      
  *      -weiter Schild/Schiffs und Waffentypen hinzufügen

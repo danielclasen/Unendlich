@@ -75,6 +75,14 @@ namespace Unendlich
         {
             get { return schaden * schuesseProSek; }
         }
+
+        public int waffenreichweite
+        {
+            get
+            {
+                return (int)(_schiff.energie / energieVerbrauch);
+            }
+        }
         #endregion
 
 
@@ -114,6 +122,13 @@ namespace Unendlich
         public List<Schuss> AlleSchuesse()
         {
             return _schuesse;
+        }
+
+        public abstract bool IstObjektImZiel(Einheit andereEinheit);
+
+        public bool IstInReichweite(Einheit andereEinheit)
+        {
+            return Vector2.Distance(weltMittelpunkt, andereEinheit.weltMittelpunkt) < waffenreichweite;
         }
 
         public void BefehlZumFeuern()//setzte den Befehl zum Schiessen auf wahr
