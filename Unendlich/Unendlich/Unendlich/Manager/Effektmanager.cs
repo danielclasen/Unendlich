@@ -23,8 +23,8 @@ namespace Unendlich
         #region Deklaration
 
         static private List<Partikel> _effekte;
-        static Random _rand;
         static private List<Explosion> _explosionen;
+        static private List<Abgase> _abgase;
         #endregion
 
 
@@ -32,9 +32,9 @@ namespace Unendlich
 
         public static void Init()
         {
-            _rand = new Random();
             _effekte = new List<Partikel>();
             _explosionen = new List<Explosion>();
+            _abgase = new List<Abgase>();
         }
         #endregion
 
@@ -44,6 +44,16 @@ namespace Unendlich
         public static void HinzufuegenSchildeffekt(Raumschiff getroffenesSchiff, Schuss schuss)
         {
             _effekte.Add(new Schildtreffer(getroffenesSchiff,schuss));
+        }
+
+        public static void HinzufuegenAbgaseffekt(Raumschiff raumschiff)
+        {
+            int anzahlEffekte = Helferklasse.rand.Next(10, 15);
+
+            for (int i = 0; i < anzahlEffekte; i++)
+            {
+                _effekte.Add(new Abgase(raumschiff.weltMittelpunkt, Helferklasse.ZufallsGeschwindigkeit(15, 20)));
+            }
         }
 
         public static void HinzufuegenExplosion(
@@ -63,7 +73,7 @@ namespace Unendlich
             int minEffektGeschwindigkeit = (int)beschleunigung * 2;
             int maxEffektGeschwindigkeit = (int)beschleunigung * 5;
 
-            int anzahlEffekte = _rand.Next(minEffekZahl, maxEffekZahl + 1);
+            int anzahlEffekte =  Helferklasse.rand.Next(minEffekZahl, maxEffekZahl + 1);
 
             Vector2 effektRichtung = Vector2.Zero;
             Vector2 effektBeschleunigung = Vector2.Zero;
@@ -89,7 +99,7 @@ namespace Unendlich
                     endFarbe));
             }
 
-            int anzahlExplosionen = _rand.Next(minExplosionenZahl, maxExplosionenZahl);
+            int anzahlExplosionen = Helferklasse.rand.Next(minExplosionenZahl, maxExplosionenZahl);
 
             for (int i = 0; i < anzahlExplosionen; i++)
             {
@@ -118,12 +128,12 @@ namespace Unendlich
         
         private static float ZufallsZahlUnter1(float min, float max)
         {
-            return (float) (_rand.Next((int)min * 100, (int)max * 100 + 1))/100;
+            return (float)(Helferklasse.rand.Next((int)min * 100, (int)max * 100 + 1)) / 100;
         }
 
         private static Vector2 ZufallsPosition(Vector2 ursprungsPosition, int maxAbweichung)
         {
-            return new Vector2(_rand.Next((int)ursprungsPosition.X - maxAbweichung, (int)ursprungsPosition.X + maxAbweichung), _rand.Next((int)ursprungsPosition.Y - maxAbweichung, (int)ursprungsPosition.Y + maxAbweichung));
+            return new Vector2(Helferklasse.rand.Next((int)ursprungsPosition.X - maxAbweichung, (int)ursprungsPosition.X + maxAbweichung), Helferklasse.rand.Next((int)ursprungsPosition.Y - maxAbweichung, (int)ursprungsPosition.Y + maxAbweichung));
         }
 
         #endregion

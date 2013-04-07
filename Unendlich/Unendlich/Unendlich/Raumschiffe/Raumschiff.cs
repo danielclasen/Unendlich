@@ -247,6 +247,9 @@ namespace Unendlich
             rotiereZu(_geschwindigkeit);//aktuallisiert die Rotation anhand der Geschwindigkeit
             base.Update(gameTime);
 
+            if (geschwindigkeit != Vector2.Zero)
+                Effektmanager.HinzufuegenAbgaseffekt(this);
+
             foreach (BasisWaffe waffe in _waffen)
                 waffe.Update(gameTime);
 

@@ -110,6 +110,7 @@
     <Compile Include="BasisKlassen\AnimationsStreifen.cs" />
     <Compile Include="Einheiten\Einheit.cs" />
     <Compile Include="Helferklassen\KI.cs" />
+    <Compile Include="Manager\Effekte\Abgase.cs" />
     <Compile Include="Manager\Effekte\Schildtreffer.cs" />
     <Compile Include="Raumschiffe\Schild\BSchild.cs" />
     <Compile Include="Helferklassen\Containerklasse.cs" />
