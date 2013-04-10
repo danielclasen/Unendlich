@@ -64,7 +64,9 @@ namespace Unendlich
 
         public void HinzufuegenNPC(NPC neuerNpc)
         {
-            _einheitenListe[1].Add(neuerNpc);
+            //Abfrage ist nur temporär
+            if (_einheitenListe[1].Count < 20)
+                _einheitenListe[1].Add(neuerNpc);
         }
         #endregion
 

@@ -14,7 +14,7 @@ namespace Unendlich
             : base(
             FindePosition(getroffenesSchiff, schuss),
             getroffenesSchiff.geschwindigkeit,
-            Vector2.Zero,
+            0,
             10,
             10,
             0.21f,

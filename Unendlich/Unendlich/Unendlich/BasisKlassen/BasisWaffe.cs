@@ -143,7 +143,7 @@ namespace Unendlich
             Vector2 neuePosition =- positionNachRotation(muendung);
             neuePosition += weltMittelpunkt;
 
-            AddSchuss( new Schuss(neuePosition, SchussRichtung(_schiff.geschwindigkeit) * _schussGeschwindigkeit, Vector2.Zero, 7, 3, _schussAnimation, _schussGeschwindigkeit, (_schiff.energie / _engerieVerbrauch), schaden));
+            AddSchuss( new Schuss(neuePosition, SchussRichtung(_schiff.geschwindigkeit) * _schussGeschwindigkeit, 0, 7, 3, _schussAnimation, _schussGeschwindigkeit, (_schiff.energie / _engerieVerbrauch), schaden));
         }
 
         protected void AddSchuss(Schuss schuss)

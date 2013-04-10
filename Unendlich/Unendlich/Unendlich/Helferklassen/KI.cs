@@ -59,7 +59,7 @@ namespace Unendlich
         }*/
 
         /// <summary>
-        /// Überprüft die Distanz zum Spieler und schießt, wenn der Spieler näher als Feuerreichweite ist und sich der Spieler im Ziel befindet
+        /// Überprüft die Distanz zur Einheit und schießt, wenn die Einheit näher als die Feuerreichweite ist und sich die Einheit im Ziel befindet
         /// </summary>
         /// <param name="npc"></param>
         private static void SchiesseBeiZiel(NPC npc)
@@ -70,16 +70,11 @@ namespace Unendlich
             {
                 foreach (BasisWaffe waffe in npc.aktuellesSchiff.waffen)
                 {
-                    if (npc.aktuellesSchiff.waffen[0].IstObjektImZiel(andereEinheit) 
+                    if (waffe.IstObjektImZiel(andereEinheit) 
                         && waffe.IstInReichweite(andereEinheit))// es befindet sich wer im Ziel
                     {
-                        if (npc.fraktion == andereEinheit.fraktion)// ein Verbündeter
-                        {
-                            sollSchiessen = false;
-                            break;// er soll nicht schießen
-                        }
-                        else
-                            sollSchiessen = false;
+                        if (npc.fraktion != andereEinheit.fraktion)// ein Verbündeter
+                            sollSchiessen = true;
                     }
                 }
             }
@@ -214,7 +209,7 @@ namespace Unendlich
         {
             SpielObjekt naechstesObjekt = null;
             float naechsteEntfernungBisKollision = 0.0f;
-            float berücksichtigungsRadius = aktuellerNPC.kollisionsRadius * 10;//Radius, in dem Objekte brücksichtigt werdem
+            float berücksichtigungsRadius = aktuellerNPC.kollisionsRadius * 20;//Radius, in dem Objekte brücksichtigt werdem
 
             foreach (Einheit einheit in Spielmanager.weltall[0].alleEinheiten)
             {
@@ -229,12 +224,12 @@ namespace Unendlich
                 }
             }
 
-            if (naechstesObjekt != null)
+            if (naechstesObjekt != null && aktuellerNPC.weltMittelpunkt != naechstesObjekt.weltMittelpunkt)// Wenn die Objekte genau aufeinander lägen wäre der ausweichVektor 0/0 und dürfte nicht normaliersiert werde
             {
                 Vector2 ausweichVektor = Vector2.Zero;
                 ausweichVektor = aktuellerNPC.weltMittelpunkt - naechstesObjekt.weltMittelpunkt;
                 ausweichVektor.Normalize();
-                ausweichVektor *= (1 - naechsteEntfernungBisKollision / berücksichtigungsRadius);// Vielleicht zu stark gewichtet
+                ausweichVektor *= (1 - naechsteEntfernungBisKollision / berücksichtigungsRadius) * 0.9f;// Vielleicht zu stark gewichtet
                 return ausweichVektor;
             }
             else
@@ -272,12 +267,14 @@ namespace Unendlich
         {
             if (npc.naechstesZiel == null)
                 BerechneNaechstenGegner(npc);
-
-            BerechneVerhalten(npc);
-            BerechneFlugbahn(npc);
+            else
+            {
+                BerechneVerhalten(npc);
+                BerechneFlugbahn(npc);
+                PruefeZielerfuellung(npc);
+            }
+            
             SchiesseBeiZiel(npc);
-
-            PruefeZielerfuellung(npc);
         }
         #endregion
     }

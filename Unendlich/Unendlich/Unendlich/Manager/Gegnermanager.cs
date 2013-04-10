@@ -32,14 +32,15 @@ namespace Unendlich
         {
             //temporär
             float vergangenSeitLetztenFrame = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _zeitSeitLetztemSpawn += vergangenSeitLetztenFrame;
-
-            if (_zeitSeitLetztemSpawn > _spawnZeitMin)
+            //_zeitSeitLetztemSpawn += vergangenSeitLetztenFrame;
+            
+            if (_zeitSeitLetztemSpawn < 20)
             {
-                SpawnGegner(new KleinerJaeger(new Vector2(2000, 2000)), Einheit.Fraktion.gegner1, Spielmanager.weltall[0]);
-                SpawnGegner(new Spaeher(new Vector2(-2000, -2000)), Einheit.Fraktion.gegner2, Spielmanager.weltall[0]);
                 SpawnGegner(new GrosserJaeger(new Vector2(0, 0)), Einheit.Fraktion.spieler1, Spielmanager.weltall[0]);
-                _zeitSeitLetztemSpawn = 0f;
+                SpawnGegner(new KleinerJaeger(new Vector2(2000, 2000)), Einheit.Fraktion.gegner1, Spielmanager.weltall[0]);
+                //SpawnGegner(new Spaeher(new Vector2(-2000, -2000)), Einheit.Fraktion.gegner2, Spielmanager.weltall[0]);
+
+                _zeitSeitLetztemSpawn++;
             }
         }
         #endregion

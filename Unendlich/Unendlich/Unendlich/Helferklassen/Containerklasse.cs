@@ -77,6 +77,9 @@ namespace Unendlich
             texturName = "MG_schuss";
             LadeTextur(pfad, texturName, content);
 
+            pfad = @"Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\";
+            texturName = "KleinerRaktenwerfer_inaktiv";
+
             //Lade Sternenhimmel
             pfad = @"Texturen/Sternenhimmel/";
             

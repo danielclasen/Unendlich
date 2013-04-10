@@ -119,7 +119,9 @@
     <Compile Include="Raumschiffe\GrosserJaeger.cs" />
     <Compile Include="Raumschiffe\Schild\ASchild.cs" />
     <Compile Include="Raumschiffe\Schild\BasisSchild.cs" />
+    <Compile Include="Raumschiffe\Schuss\Rakete.cs" />
     <Compile Include="Raumschiffe\Spaeher.cs" />
+    <Compile Include="Raumschiffe\Waffe\KleinerRaktenwerfer.cs" />
     <Compile Include="Raumschiffe\Waffe\MG.cs" />
     <Compile Include="Weltkomponenten\Asteroid.cs" />
     <Compile Include="Manager\Effekte\Explosion.cs" />
@@ -133,12 +135,12 @@
     <None Include="Alter Code\ObjetcCopier%28alt%29" />
     <Compile Include="BasisKlassen\Partikel.cs" />
     <Compile Include="Raumschiffe\Waffe\Laser.cs" />
-    <Compile Include="Raumschiffe\Schuss.cs" />
+    <Compile Include="Raumschiffe\Schuss\Schuss.cs" />
     <Compile Include="Weltkomponenten\Asteroidenfeld.cs" />
     <Compile Include="Helferklassen\Helferklasse.cs" />
     <None Include="Alter Code\Raumschiffe%28alt%29" />
-    <Compile Include="Raumschiffe\Raumschiff.cs" />
-    <Compile Include="Raumschiffe\Waffe\BasisWaffe.cs" />
+    <Compile Include="BasisKlassen\Raumschiff.cs" />
+    <Compile Include="BasisKlassen\BasisWaffe.cs" />
     <None Include="Alter Code\Schussmanager%28alt%29" />
     <Compile Include="Einheiten\Spieler.cs" />
     <Compile Include="Manager\Spielmanager.cs" />

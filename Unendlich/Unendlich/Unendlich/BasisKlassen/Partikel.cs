@@ -15,7 +15,7 @@ namespace Unendlich
         protected float _lebensZeit;
         protected float _restZeit;
 
-        protected Vector2 _beschleunigung;
+        protected float _beschleunigung;
         protected float _hoechstGeschwindigkeit;
         protected Color _anfangsFarbe;
         protected Color _endFarbe;
@@ -60,7 +60,7 @@ namespace Unendlich
         public Partikel(
             Vector2 startposition,
             Vector2 geschwindigkeit,
-            Vector2 beschleunigung,
+            float beschleunigung,
             int breite,
             int hoehe,
             float malTiefe,
@@ -69,7 +69,7 @@ namespace Unendlich
             float lebensZeit,
             Color anfangsFarbe,
             Color endFarbe)
-            : base(startposition,geschwindigkeit,breite,hoehe,malTiefe,aktuelleAnimation)
+            : base(startposition, geschwindigkeit, breite, hoehe, malTiefe, aktuelleAnimation)
         {
             _lebensZeit = lebensZeit;
             _restZeit = lebensZeit;
@@ -94,7 +94,9 @@ namespace Unendlich
 
             if (istAktiv)
             {
-                geschwindigkeit += _beschleunigung;
+                Vector2 richtung = geschwindigkeit;
+                richtung.Normalize();
+                geschwindigkeit += richtung * _beschleunigung;
 
                 _farbe = Color.Lerp(_anfangsFarbe, _endFarbe, prozentualeRestzeit);
             }

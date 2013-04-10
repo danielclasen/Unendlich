@@ -29,7 +29,7 @@ namespace Unendlich
         public Schuss(
             Vector2 startposition,
             Vector2 richtung,
-            Vector2 beschleunigung,
+            float beschleunigung,
             int breite,
             int hoehe,
             string aktuelleAnimation,

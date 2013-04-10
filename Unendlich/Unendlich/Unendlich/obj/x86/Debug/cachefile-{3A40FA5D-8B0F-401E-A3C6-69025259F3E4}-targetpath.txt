@@ -20,3 +20,4 @@ Content\Texturen\Raumschiffe\Waffen\MG\MG_aktiv.xnb
 Content\Texturen\Effekte\SchildTreffer_aktiv.xnb
 Content\Fonts\pericles14.xnb
 Content\Fonts\kootenay12.xnb
+Content\Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\KleinerRaktenwerfer_inaktiv.xnb

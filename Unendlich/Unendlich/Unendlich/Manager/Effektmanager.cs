@@ -69,14 +69,11 @@ namespace Unendlich
             for (int x = 0; x < anzahlEffekte; x++)
             {
                 effektRichtung = Helferklasse.ZufallsGeschwindigkeit(minEffektGeschwindigkeit, maxEffektGeschwindigkeit) + objektGeschwindigkeit / 3;
-                effektBeschleunigung = effektRichtung;
-                effektBeschleunigung.Normalize();
-                effektBeschleunigung *= beschleunigung;
-
+                
                 _effekte.Add(new Partikel(
                     ZufallsPosition(position, 10),
                     effektRichtung,
-                    effektBeschleunigung,
+                    beschleunigung,
                     1,
                     1,
                     0.20f,

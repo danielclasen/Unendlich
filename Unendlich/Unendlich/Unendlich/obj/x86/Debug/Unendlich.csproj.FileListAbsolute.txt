@@ -79,3 +79,4 @@ F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen
 F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\SchildTreffer_aktiv.xnb
 F:\Csharp\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\kootenay12.xnb
 C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Effekte\SchildTreffer_aktiv.xnb
+C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\KleinerRaktenwerfer_inaktiv.xnb

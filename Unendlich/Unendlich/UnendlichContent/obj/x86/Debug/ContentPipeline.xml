@@ -244,6 +244,15 @@
       <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Fonts\kootenay12.xnb</Output>
       <Time>2013-03-17T16:28:14+01:00</Time>
     </Item>
+    <Item>
+      <Source>Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\KleinerRaktenwerfer_inaktiv.png</Source>
+      <Name>Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\KleinerRaktenwerfer_inaktiv</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Chico_KidM\Documents\Spieleentwicklung\Unendlich\Unendlich\Unendlich\Unendlich\bin\x86\Debug\Content\Texturen\Raumschiffe\Waffen\KleinerRaktenwerfer\KleinerRaktenwerfer_inaktiv.xnb</Output>
+      <Time>2013-04-08T22:52:04.6221242+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

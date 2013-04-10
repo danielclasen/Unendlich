@@ -15,7 +15,9 @@
  * 
  * Effektmanager:
  *      -Animationen starten zufällig
- *      
+ *
+ * KI:
+ *      -es wird geschossen
  * 
  * Anzeige/Interface
  *      -gegebenfalls die Anzeige der Position überarbeiten
@@ -45,7 +47,12 @@
  * Zu tun:
  * *******
  *      -KI.SchiesseBeiZiel muss überarbeitet werden
- *          -momentan wird nicht geschossen
+ *          -Nicht schießen bei verbündetem
+ *              -muss wahrscheinlich an die Waffe gehangen werden
+ *              
+ *      -Waffe muss wahrscheinlich überarbeitet werden
+ * 
+ *      -Momentan wird das Spiel ab etwa 60 NPCs unspielbar
  * 
  *      -Interface Klassendesign überarbeiten
  *      
